@@ -9,7 +9,7 @@ home
 <div class="products">
 
     {% for product in object_list %}
-    <a href="{% url 'product:detail' pk=product.pk %}">
+    <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
         <div class="product">
             <h2>{{product.name}}</h2>
             <img src="{{product.image.url}}" alt="">
