@@ -8,6 +8,29 @@
 <div class="detail-product">
     <div class="product">
         <h2>{{product.name}}</h2>
+        <p>{{product.description}}</p>
+        <!-- options -->
+
+        <div class="options">
+            {% for options in product.options.all %}
+            <div><span>{{options.opt}}</span></div>
+            {% endfor %}
+        </div>
+
+        <!-- categories -->
+        <div class="categories">
+            {% for category in product.category.all %}
+            <div><span>{{category.name}}</span></div>
+            {% endfor %}
+        </div>
+
+        <!-- check if product avalble -->
+        {% if product.available %}
+        <p>The product is available </p>
+        {% else %}
+        <p>The product is not available </p>
+        {% endif %}
+
         <img src="{{product.image.url}}" alt="">
     </div>
 </div>
