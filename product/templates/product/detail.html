@@ -20,18 +20,21 @@
         <!-- categories -->
         <div class="categories">
             {% for category in product.category.all %}
-            <div><span>{{category.name}}</span></div>
+            <div class="category opt"><span>{{category.name}}</span></div>
             {% endfor %}
         </div>
 
         <!-- check if product avalble -->
         {% if product.available %}
-        <p>The product is available </p>
+        <p class="success">The product is available </p>
         {% else %}
-        <p>The product is not available </p>
+        <p class="danger">The product is not available </p>
         {% endif %}
 
         <img src="{{product.image.url}}" alt="">
+        <div class="add-to-cart">
+            <a href="{% url 'cart:add' pk=product.pk%}">Add to cart</a>
+        </div>
     </div>
 </div>
 {% endblock content %}

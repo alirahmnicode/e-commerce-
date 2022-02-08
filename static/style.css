@@ -4,7 +4,36 @@
     box-sizing: border-box;
 }
 
+.opt {
+    background-color: #cfe2ff;
+    color: #2242a4;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.success {
+    background-color: #d1e7dd;
+    color: #2b5734;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px; 
+}
+
+.danger {
+    background-color: #f8d7da;
+    color: #842029;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px; 
+}
+
 /* products */
 .product img {
     width: 300px;
 }
+
+.product .categories {
+    display: flex;
+}
+

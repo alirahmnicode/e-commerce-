@@ -6,6 +6,7 @@ home
 
 
 {% block content %}
+<a href="{% url 'cart:index' %}">cart</a>
 <div class="products">
 
     {% for product in object_list %}
