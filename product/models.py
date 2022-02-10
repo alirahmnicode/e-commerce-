@@ -8,6 +8,7 @@ class Product(models.Model):
     options = models.ManyToManyField("Option", related_name="options", blank=True)
     category = models.ManyToManyField("CategoryForProduct", related_name="categores", blank=True)
     available = models.BooleanField(default=True)
+    price = models.DecimalField(max_digits=20, decimal_places=0 ,null=True)
     slug = models.SlugField(null=True)
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
