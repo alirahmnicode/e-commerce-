@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
-
-{% block title %}
-cart
-{% endblock title %}
-
+{% block title %} cart {% endblock title %}
 {% block content %}
 
-{% for item in cart.values %}
-{{item.name}}
-<hr>
-{% endfor %}
+<div class="cart">
+    
+    {% for item in cart %}
+       <div>
+          <div>{{item.quantity}}</div> 
+          <div>{{item.price}}</div>
+          <div>{{item.product}}
+              <img src="{{item.product.image.url}}" alt="">
+          </div>
+       </div>
+       <hr>
+    {% endfor %}
+</div>
 
 {% endblock content %}

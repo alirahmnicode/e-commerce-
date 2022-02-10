@@ -33,8 +33,13 @@
 
         <img src="{{product.image.url}}" alt="">
         <div class="add-to-cart">
-            <a href="{% url 'cart:add' pk=product.pk%}">Add to cart</a>
         </div>
     </div>
 </div>
+<form action="{% url 'cart:add' product.id %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <input type="submit" value="Add to cart">
+</form>
+
 {% endblock content %}
