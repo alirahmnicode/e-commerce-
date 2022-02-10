@@ -40,6 +40,15 @@
 
 
 /* cart */
+.labels ,.cart-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-product {
+    padding: 5px;
+    margin: 10px;
+}
 .cart img {
     width: 100px;
 }
