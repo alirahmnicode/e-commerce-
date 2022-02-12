@@ -1,3 +1,4 @@
+from itertools import product
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
 from .cart import Cart
@@ -21,6 +22,18 @@ class AddToCartView(View):
         if form.is_valid():
             cd = form.cleaned_data
             cart.add(product, quantity=cd["quantity"], override_quantity=cd["override"])
+        return redirect(request.META.get("HTTP_REFERER"))
+
+
+
+
+def remove(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        cart = Cart(request)
+        cart.remove(product_id)
+        return redirect(request.META.get("HTTP_REFERER"))
+    else:
         return redirect(request.META.get("HTTP_REFERER"))
 
 

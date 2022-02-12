@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %} cart {% endblock title %}
 {% block content %}
 
@@ -23,11 +24,18 @@
                 </a>
             </td>
             <td>{{ product.name }}</td>
-            <td>{{ item.quantity }}</td>
             <td>
-                <form action="" method="post">
-                    <input type="submit" value="Remove">
+                <div class="quantity">
+                    <div class="plus">&plus;</div>
+                    <div>{{ item.quantity }}</div>
+                    <div class="minus">&#8722;</div>
+                </div>
+            </td>
+            <td>
+                <form action="{% url 'cart:remove' %}" method="post">
                     {% csrf_token %}
+                    <input type="submit" value="Remove" class="danger">
+                    <input type="hidden" name="product_id" value="{{product.pk}}">
                 </form>
             </td>
             <td class="num">${{ item.price }}</td>
@@ -48,3 +56,9 @@
     <a href="#" class="button">Checkout</a>
 </p>
 {% endblock content %}
+
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock js %}
