@@ -31,6 +31,7 @@
                     <div class="minus">&#8722;</div>
                 </div>
             </td>
+            {{ product.pk |json_script:"id" }}
             <td>
                 <form action="{% url 'cart:remove' %}" method="post">
                     {% csrf_token %}
