@@ -21,6 +21,8 @@ const csrftoken = getCookie('csrftoken');
 plus_btn = $('.plus')
 minus_btn = $('.minus')
 
+total = $('.total-price')
+
 
 plus_btn.click(function (event) {
     element = event.target
@@ -28,7 +30,9 @@ plus_btn.click(function (event) {
     var quantity_div = element.nextElementSibling
     // get product id
     const product_id = productId(element)
-    change_quantity('plus', quantity_div, product_id)
+    // get price div
+    const price = element.offsetParent.nextElementSibling.nextElementSibling.nextElementSibling
+    change_quantity('plus', quantity_div, product_id, price)
 })
 
 
@@ -38,12 +42,14 @@ minus_btn.click(function (event) {
     var quantity_div = element.previousElementSibling
     // get product id
     const product_id = productId(element)
-    change_quantity('minus', quantity_div, product_id)
+    // get price div
+    const price = element.offsetParent.nextElementSibling.nextElementSibling.nextElementSibling
+    change_quantity('minus', quantity_div, product_id, price)
 })
 
 
 // send ajax request
-function change_quantity(act, quantity_div, product_id) {
+function change_quantity(act, quantity_div, product_id, price) {
     var quantity = act
     $.ajax({
         type: "POST",
@@ -51,6 +57,14 @@ function change_quantity(act, quantity_div, product_id) {
         headers: { 'X-CSRFToken': csrftoken },
         success: function (response) {
             quantity_div.textContent = response.quantity
+            price.textContent = `$${response.price}`
+            total.text(`$ ${response.total_price}`)
+            // reload cart for remove product box tha deleted from cart
+            if (response.remove) {
+                quantity_div.textContent = "deleted"
+                price.textContent = `$0`
+                total.text(`$${response.total_price}`)
+            }
         }
     })
 }

@@ -3,7 +3,6 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
 from django.http import JsonResponse
 from .cart import Cart
-from .forms import CartAddProductForm
 from product.models import Product
 
 
@@ -30,16 +29,16 @@ def add_to_cart(request,product_id,act):
     product = get_object_or_404(Product, id=product_id)
     
     # if ajax request
-    if is_ajax and request.method == 'POST':
+    if is_ajax(request) and request.method == 'POST':
         if act == 'plus':
             quantity = 1
         else:
             quantity = -1
         context = cart.add(product, quantity=quantity)
-        return JsonResponse(context)
+        return JsonResponse(context , safe=False)
     # if wsgi request
     elif request.method == 'POST':
-        context = cart.add(product, quantity=quantity)
+        cart.add(product)
         return redirect(request.META.get("HTTP_REFERER"))
 
 

@@ -33,8 +33,7 @@
 
         <img src="{{product.image.url}}" alt="">
         <div class="add-to-cart">
-            <form action="{% url 'cart:add' product.id %}" method="post">
-                {{ cart_product_form }}
+            <form action="{% url 'cart:add' product_id=product.id act='add' %}" method="post">
                 {% csrf_token %}
                 <input type="submit" value="Add to cart">
             </form>
