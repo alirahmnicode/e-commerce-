@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-home
+{{category}}
 {% endblock title %}
 
 
@@ -10,6 +10,9 @@ home
     {% include 'inc/nav.html' %}
 </header>
 <div class="container">
+    <div class="category-tag">
+        <h3>{{category}}</h3>
+    </div>
     <div class="products p-box">
         <div class="title-box">
             <span>Last Product</span>
@@ -22,21 +25,6 @@ home
                     <div>
                         <h2>{{product.name}}</h2>
                     </div>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="categoreis p-box">
-        <div class="title-box">
-            <span>Categoreis</span>
-        </div>
-        <div class="boxes">
-            {% for category in product_categories %}
-            <a href="{% url 'product:pr_ct_list' category.name %}">
-                <div class="category box-hover">
-                    <div><img src="{{category.image.url}}" alt=""></div>
-                    <div><span>{{category.name}}</span></div>
                 </div>
             </a>
             {% endfor %}
