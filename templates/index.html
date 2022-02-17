@@ -6,17 +6,35 @@ home
 
 
 {% block content %}
-<a href="{% url 'cart:index' %}">cart</a>
-<div class="products">
-
-    {% for product in object_list %}
-    <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
-        <div class="product">
-            <h2>{{product.name}}</h2>
-            <img src="{{product.image.url}}" alt="">
+<div class="container">
+    <div class="products">
+        {% for product in products %}
+        <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
+            <div class="product box-hover">
+                <div><img src="{{product.image.url}}" alt=""></div>
+                <div>
+                    <h2>{{product.name}}</h2>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="categoreis">
+        <div class="title-box">
+            <span>categoreis</span>
         </div>
-    </a>
-    {% endfor %}
-
+        <div class="boxes">
+            {% for category in product_categories %}
+            <a href="">
+                <div class="category box-hover">
+                    <div><img src="{{category.image.url}}" alt=""></div>
+                    <div><span>{{category.name}}</span></div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+<a href="{% url 'cart:index' %}">cart</a>
+
 {% endblock content %}
