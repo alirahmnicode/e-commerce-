@@ -6,22 +6,30 @@ home
 
 
 {% block content %}
+<header>
+    {% include 'inc/nav.html' %}
+</header>
 <div class="container">
-    <div class="products">
-        {% for product in products %}
-        <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
-            <div class="product box-hover">
-                <div><img src="{{product.image.url}}" alt=""></div>
-                <div>
-                    <h2>{{product.name}}</h2>
-                </div>
-            </div>
-        </a>
-        {% endfor %}
-    </div>
-    <div class="categoreis">
+    <div class="products p-box">
         <div class="title-box">
-            <span>categoreis</span>
+            <span>Last Product</span>
+        </div>
+        <div class="boxes">
+            {% for product in products %}
+            <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
+                <div class="product box-hover">
+                    <div><img src="{{product.image.url}}" alt=""></div>
+                    <div>
+                        <h2>{{product.name}}</h2>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="categoreis p-box">
+        <div class="title-box">
+            <span>Categoreis</span>
         </div>
         <div class="boxes">
             {% for category in product_categories %}
@@ -35,6 +43,6 @@ home
         </div>
     </div>
 </div>
-<a href="{% url 'cart:index' %}">cart</a>
+
 
 {% endblock content %}
