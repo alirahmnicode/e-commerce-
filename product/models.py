@@ -40,6 +40,8 @@ class CategoryForOptions(models.Model):
 
 class CategoryForProduct(models.Model):
     name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="product" , null=True)
+
 
     def __str__(self):
         return self.name

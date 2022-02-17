@@ -35,7 +35,7 @@
         <div class="add-to-cart">
             <form action="{% url 'cart:add' product_id=product.id act='add' %}" method="post">
                 {% csrf_token %}
-                <input type="submit" value="Add to cart">
+                <input type="submit" value="Add to cart" class="opt">
             </form>
         </div>
     </div>
