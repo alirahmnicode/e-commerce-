@@ -58,6 +58,7 @@ minus_btn.click(function (event) {
 // send ajax request
 function add_to_cart(act, quantity_div, product_id, price) {
     var quantity = act
+    var text = ''
     $.ajax({
         type: "POST",
         url: `http://localhost:8000/cart/add/${product_id}/${quantity}/`,
@@ -65,7 +66,18 @@ function add_to_cart(act, quantity_div, product_id, price) {
         success: function (response) {
             // add product
             if (act === 'add') {
-                console.log(response)
+                var message = $('.message')
+                var product_name = $('h1')[0].textContent
+                // message text
+                text = `<div>
+                    <p>${response.quantity} ${product_name} added to your cart</p>
+                    <p>total prise : $${response.total_price}</p>
+                    <p>see <a href="/cart/">cart</a></p>
+                    <p><a href="">check out</a></p>
+                </div>
+                `
+                message.append(text)
+                message.css('display','block')
             } else {
                 // increase or decrease product
                 quantity_div.textContent = response.quantity
@@ -91,3 +103,13 @@ function productId(element) {
     return product_id
 }
 
+
+
+// close btn
+var close = $('.close')
+
+close.click(function(e){
+    var close_div = e.target
+    // close parent element
+    console.log(close_div.parentElement.style.display='none')
+})

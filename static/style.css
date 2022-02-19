@@ -9,6 +9,19 @@ a {
   text-decoration: none;
 }
 
+.message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 700px;
+  display: none;
+}
+
+.close {
+  font-size: 30px;
+  cursor: pointer;
+}
+
 input[type="submit"],
 button {
   border: none;
