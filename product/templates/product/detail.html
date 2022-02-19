@@ -5,38 +5,62 @@
 {% endblock title %}
 
 {% block content %}
+{% include 'inc/nav.html' %}
 <div class="detail-product">
+    <!-- detial product -->
     <div class="product">
         <h2>{{product.name}}</h2>
         <p>{{product.description}}</p>
         <!-- options -->
-
         <div class="options">
             {% for options in product.options.all %}
             <div><span>{{options.opt}}</span></div>
             {% endfor %}
         </div>
-
+        <!-- image -->
+        <div class="image">
+            <img src="{{product.image.url}}" alt="">
+        </div>
         <!-- categories -->
         <div class="categories">
             {% for category in product.category.all %}
-            <div class="category opt"><span>{{category.name}}</span></div>
+            <div class="category">
+                <a href="{% url 'product:pr_ct_list' category.name %}">
+                    <div class="opt">{{category.name}}</div>
+                </a>
+            </div>
             {% endfor %}
         </div>
-
         <!-- check if product avalble -->
-        {% if product.available %}
-        <p class="success">The product is available </p>
-        {% else %}
+        {% if not product.available %}
         <p class="danger">The product is not available </p>
         {% endif %}
 
-        <img src="{{product.image.url}}" alt="">
         <div class="add-to-cart">
             <form action="{% url 'cart:add' product_id=product.id act='add' %}" method="post">
                 {% csrf_token %}
-                <input type="submit" value="Add to cart" class="opt">
+                <input type="submit" value="Add to cart" class="secondary">
             </form>
+        </div>
+    </div>
+    <!-- similar posts -->
+    <div class="similar-product">
+        <div class="products p-box">
+            <div class="title-box">
+                <span>Similar Posts</span>
+            </div>
+            <div class="boxes">
+                {% for product in similar_posts %}
+                <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
+                    <div class="product box-hover">
+                        <div><img src="{{product.image.url}}" alt=""></div>
+                        <div>
+                            <h4>{{product.name}}</h4>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

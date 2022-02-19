@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.views.generic import ListView
 
 from .models import Product, CategoryForProduct
+from .similar_product import similar
 
 
 class Index(ListView):
@@ -17,15 +18,16 @@ class Index(ListView):
 
 def product_detail(request, pk, slug):
     product = get_object_or_404(Product, pk=pk, slug=slug)
+    similar_posts = similar(pk)
     return render(
         request,
         "product/detail.html",
-        {"product": product},
+        {"product": product, "similar_posts": similar_posts},
     )
 
 
 def get_products_by_category(request, category):
-    products = get_list_or_404(Product , category__name=category)
+    products = get_list_or_404(Product, category__name=category)
     return render(
         request,
         "product/products_list.html",

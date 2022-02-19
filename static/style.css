@@ -16,6 +16,14 @@ button {
   cursor: pointer;
 }
 
+.secondary {
+  background-color: #e2e3e5;
+  color: #41464b;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
 .opt {
   background-color: #cfe2ff;
   color: #2242a4;
@@ -38,6 +46,10 @@ button {
   padding: 5px;
   border-radius: 5px;
   margin: 10px;
+}
+
+.d-i {
+  display: inline-block;
 }
 
 .box-hover:hover {
@@ -75,9 +87,8 @@ nav .search input[type="search"] {
   margin: 50px;
 }
 
-.product {
+.container .product {
   text-align: center;
-  box-shadow: 0 0 15px 0px #ccc;
   margin: 20px;
 }
 
@@ -98,8 +109,9 @@ nav .search input[type="search"] {
   align-items: center;
 }
 
-.boxes > div {
-  margin: 0 20px;
+.boxes > a > div {
+  margin: 10px 20px;
+  box-shadow: 0 0 15px 0px #ccc;
 }
 
 .category {
@@ -160,4 +172,36 @@ nav .search input[type="search"] {
 .plus:hover,
 .minus:hover {
   box-shadow: 0 0 25px 1px #ccc;
+}
+
+/* detail-product */
+.detail-product {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0;
+}
+
+.detail-product > .product {
+  flex: 70%;
+  margin-left: 25px;
+}
+
+.detail-product > .product > .image img {
+  width: 500px;
+  height: 100%;
+}
+
+
+.detail-product > .similar-product {
+  flex: 30%;
+}
+
+.similar-product > .p-box {
+  margin: 0;
+}
+
+.similar-product .product img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
