@@ -43,7 +43,6 @@ class Cart:
         product_id = str(product.id)
         # add
         if product_id not in self.cart and quantity != -1:
-            print('updata'*20)
             self.cart[product_id] = {"quantity": quantity, "price": str(product.price)}
         # update
         elif product_id in self.cart:

@@ -18,12 +18,19 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 // get btns
+add = $('#add-to-cart')
 plus_btn = $('.plus')
 minus_btn = $('.minus')
 
 total = $('.total-price')
 
+// add to cart
+add.click(function (e) {
+    product_id = JSON.parse(document.getElementById('product_id').textContent)
+    add_to_cart('add', null, product_id, null)
+})
 
+// Increase exist product in cart
 plus_btn.click(function (event) {
     element = event.target
     // get current quantity div
@@ -32,10 +39,10 @@ plus_btn.click(function (event) {
     const product_id = productId(element)
     // get price div
     const price = element.offsetParent.nextElementSibling.nextElementSibling.nextElementSibling
-    change_quantity('plus', quantity_div, product_id, price)
+    add_to_cart('plus', quantity_div, product_id, price)
 })
 
-
+// Decrease exist product in cart
 minus_btn.click(function (event) {
     element = event.target
     // get current quantity div
@@ -44,27 +51,33 @@ minus_btn.click(function (event) {
     const product_id = productId(element)
     // get price div
     const price = element.offsetParent.nextElementSibling.nextElementSibling.nextElementSibling
-    change_quantity('minus', quantity_div, product_id, price)
+    add_to_cart('minus', quantity_div, product_id, price)
 })
 
 
 // send ajax request
-function change_quantity(act, quantity_div, product_id, price) {
+function add_to_cart(act, quantity_div, product_id, price) {
     var quantity = act
     $.ajax({
         type: "POST",
         url: `http://localhost:8000/cart/add/${product_id}/${quantity}/`,
         headers: { 'X-CSRFToken': csrftoken },
         success: function (response) {
-            quantity_div.textContent = response.quantity
-            price.textContent = `$${response.price}`
-            total.text(`$ ${response.total_price}`)
-            // reload cart for remove product box tha deleted from cart
-            if (response.remove) {
-                quantity_div.textContent = "deleted"
-                price.textContent = `$0`
-                total.text(`$${response.total_price}`)
+            // add product
+            if (act === 'add') {
+                console.log(response)
+            } else {
+                // increase or decrease product
+                quantity_div.textContent = response.quantity
+                price.textContent = `$${response.price}`
+                total.text(`$ ${response.total_price}`)
+                if (response.remove) {
+                    quantity_div.textContent = "deleted"
+                    price.textContent = `$0`
+                    total.text(`$${response.total_price}`)
+                }
             }
+
         }
     })
 }
