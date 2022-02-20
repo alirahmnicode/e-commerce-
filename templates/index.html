@@ -31,6 +31,29 @@ home
             {% endfor %}
         </div>
     </div>
+    <!-- recommends -->
+    <div class="products p-box">
+        <div class="title-box">
+            <span>Recommends Products</span>
+        </div>
+        <div class="boxes">
+            {% for product in recommends %}
+            <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
+                <div class="product box-hover">
+                    <div><img src="{{product.image.url}}" alt=""></div>
+                    <div>
+                        <h2>{{product.name}}</h2>
+                        <div>
+                            <p>{{product.price}}</p>
+                            <button id="add-to-cart" class="secondary">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- categories -->
     <div class="categoreis p-box">
         <div class="title-box">
             <span>Categoreis</span>
