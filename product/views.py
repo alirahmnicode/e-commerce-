@@ -13,7 +13,8 @@ class Index(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["product_categories"] = get_list_or_404(CategoryForProduct)[:10]
-        context["recommends"] =Product.objects.filter(recommend=True)[:10]
+        context["recommends"] = Product.objects.filter(recommend=True)[:10]
+        context["bestsellers"] = Product.objects.all().order_by("-sales_count")[:10]
         return context
 
 

@@ -12,6 +12,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=20, decimal_places=0 ,null=True)
     slug = models.SlugField(null=True)
     recommend = models.BooleanField(default=False , null=True)
+    sales_count = models.PositiveIntegerField(default=0,null=True)
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
 
