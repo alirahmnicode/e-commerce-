@@ -103,6 +103,7 @@ nav .search input[type="search"] {
 .container .product {
   text-align: center;
   margin: 20px;
+  width: 200px;
 }
 
 .product img {

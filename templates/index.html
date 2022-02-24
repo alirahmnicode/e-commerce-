@@ -15,10 +15,12 @@ home
             <span>Last Product</span>
         </div>
         <div class="boxes">
-            {% for product in products %}
+            {% for product in last_product %}
             <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
                 <div class="product box-hover">
+                    {% if product.image %}
                     <div><img src="{{product.image.url}}" alt=""></div>
+                    {% endif %}
                     <div>
                         <h2>{{product.name}}</h2>
                         <div>
@@ -33,13 +35,16 @@ home
     <!-- recommends -->
     <div class="products p-box">
         <div class="title-box">
+            <a href="{% url 'product:product_list' 'recommend' %}">all</a>
             <span>Recommends Products</span>
         </div>
         <div class="boxes">
             {% for product in recommends %}
             <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
                 <div class="product box-hover">
+                    {% if product.image %}
                     <div><img src="{{product.image.url}}" alt=""></div>
+                    {% endif %}
                     <div>
                         <h2>{{product.name}}</h2>
                         <div>
@@ -51,16 +56,19 @@ home
             {% endfor %}
         </div>
     </div>
-    <!--  -->
+    <!-- Bestsellers -->
     <div class="products p-box">
         <div class="title-box">
+            <a href="{% url 'product:product_list' 'bestsellers' %}">all</a>
             <span>Bestsellers Products</span>
         </div>
         <div class="boxes">
             {% for product in bestsellers %}
             <a href="{% url 'product:detail' pk=product.pk slug=product.slug %}">
                 <div class="product box-hover">
+                    {% if product.image %}
                     <div><img src="{{product.image.url}}" alt=""></div>
+                    {% endif %}
                     <div>
                         <h2>{{product.name}}</h2>
                         <div>
@@ -79,9 +87,11 @@ home
         </div>
         <div class="boxes">
             {% for category in product_categories %}
-            <a href="{% url 'product:pr_ct_list' category.name %}">
+            <a href="{% url 'product:product_list' 'category' %}?category={{category.name}}">
                 <div class="category box-hover">
+                    {% if category.image %}
                     <div><img src="{{category.image.url}}" alt=""></div>
+                    {% endif %}
                     <div><span>{{category.name}}</span></div>
                 </div>
             </a>
