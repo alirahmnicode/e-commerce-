@@ -10,8 +10,8 @@
 <header>
     {% include 'inc/nav.html' %}
 </header>
-<div class="container">
-    <div class="products p-box">
+<div class="products-container">
+    <div class="products p-box pr-list">
         <div class="title-box">
             <span>Last Product</span>
         </div>
@@ -28,6 +28,13 @@
                 </div>
             </a>
             {% endfor %}
+        </div>
+    </div>
+    <div class="filters">
+        <div class="filter">
+                <span class="opt">filter by price</span>
+            <div><a href="{% url 'product:product_list' query %}?sort_by=price&order=asc">the most expensive</a></div>
+            <div><a href="{% url 'product:product_list' query %}?sort_by=price&order=desc">cheapest</a></div>
         </div>
     </div>
 </div>

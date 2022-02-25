@@ -43,10 +43,12 @@ def product_list(request , query):
     if request.method == 'GET':
         next_products = request.GET.get('n')
         category = request.GET.get('category')
-        product_list = ProductList(query , category)
+        sort = request.GET.get('sort')
+        order = request.GET.get('order')
+        product_list = ProductList(query , category , sort , order)
         if not next_products:
             products = product_list.get_product()
-            return render(request , "product/products_list.html",{"products": products})
+            return render(request , "product/products_list.html",{"products": products , 'query':query})
         else:
             products = product_list.get_product(next_products)
             # create dict for response

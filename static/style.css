@@ -97,10 +97,10 @@ nav .search input[type="search"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px;
+  margin: 50px 0;
 }
 
-.container .product {
+.product {
   text-align: center;
   margin: 20px;
   width: 200px;
@@ -221,4 +221,31 @@ nav .search input[type="search"] {
   width: 100px;
   height: 100px;
   object-fit: contain;
+}
+
+
+/* products list */
+.products-container {
+  display: flex;
+}
+
+.pr-list {
+  flex: 80%;
+}
+.filters {
+  flex: 20%;
+  text-align: right;
+  margin-top: 50px;
+  box-shadow: 0 0 4px 1px #ccc inset;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.filter  a {
+  color: royalblue;
+  
+}
+
+.filter > div {
+  margin: 10px 10px;
 }
