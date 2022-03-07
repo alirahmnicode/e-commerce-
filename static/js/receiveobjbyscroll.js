@@ -3,10 +3,17 @@ var page_url = window.location.href
 
 $(window).scroll(function (event) {
     if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-        number += 20
+        number += 5
+        var url_slice = page_url.split('/')
+        q = url_slice[url_slice.length-1]
+        if(q[0] === '?'){
+            var url = `${page_url}&n=${number}`
+        }else{
+            var url = `${page_url}?n=${number}`
+        }
         $.ajax({
             type: "GET",
-            url: `${page_url}?n=${number}`,
+            url:url,
             success: function (response) {
                 for (let i = 0; i < response.length; i++) {
                     var box = `<a href="/product/${response[i].pk}/${response[i].slug}">

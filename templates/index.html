@@ -35,7 +35,6 @@ home
     <!-- recommends -->
     <div class="products p-box">
         <div class="title-box">
-            <a href="{% url 'product:product_list' 'recommend' %}">all</a>
             <span>Recommends Products</span>
         </div>
         <div class="boxes">
@@ -59,7 +58,6 @@ home
     <!-- Bestsellers -->
     <div class="products p-box">
         <div class="title-box">
-            <a href="{% url 'product:product_list' 'bestsellers' %}">all</a>
             <span>Bestsellers Products</span>
         </div>
         <div class="boxes">
@@ -87,7 +85,7 @@ home
         </div>
         <div class="boxes">
             {% for category in product_categories %}
-            <a href="{% url 'product:product_list' 'category' %}?category={{category.name}}">
+            <a href="{% url 'product:product_list' category.name %}">
                 <div class="category box-hover">
                     {% if category.image %}
                     <div><img src="{{category.image.url}}" alt=""></div>

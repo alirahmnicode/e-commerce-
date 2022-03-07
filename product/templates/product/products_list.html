@@ -25,6 +25,9 @@
                     <div>
                         <h2>{{product.name}}</h2>
                     </div>
+                    <div>
+                        <p>{{product.price}}</p>
+                    </div>
                 </div>
             </a>
             {% endfor %}
@@ -33,8 +36,8 @@
     <div class="filters">
         <div class="filter">
                 <span class="opt">filter by price</span>
-            <div><a href="{% url 'product:product_list' query %}?sort_by=price&order=asc">the most expensive</a></div>
-            <div><a href="{% url 'product:product_list' query %}?sort_by=price&order=desc">cheapest</a></div>
+                <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=desc">expensive</a>
+                <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">inexpensive</a>
         </div>
     </div>
 </div>

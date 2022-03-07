@@ -39,16 +39,15 @@ def get_products_by_category(request, category):
     )
 
 
-def product_list(request , query):
+def product_list(request , category):
     if request.method == 'GET':
         next_products = request.GET.get('n')
-        category = request.GET.get('category')
-        sort = request.GET.get('sort')
+        sort = request.GET.get('sort_by')
         order = request.GET.get('order')
-        product_list = ProductList(query , category , sort , order)
+        product_list = ProductList(category , sort , order)
         if not next_products:
             products = product_list.get_product()
-            return render(request , "product/products_list.html",{"products": products , 'query':query})
+            return render(request , "product/products_list.html",{"products": products,'category':category})
         else:
             products = product_list.get_product(next_products)
             # create dict for response

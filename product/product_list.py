@@ -2,33 +2,37 @@ from .models import Product
 
 
 class ProductList:
-    def __init__(self , query , category , sort , order):
-        if query == 'recommend':
-            self.title = 'recommends'
-            self.products = Product.objects.filter(recommend=True)
-        elif query == 'category':
-            self.title = category
-            self.products = Product.objects.filter(category__name=category)
-        elif query == 'bestsellers':
-            self.title = 'bestsellers products'
-            self.products = Product.objects.all().order_by("-sales_count")
-
+    def __init__(self ,category , sort , order):
+        self.products = Product.objects.filter(category__name=category)
         self.sort = sort
         self.order = order
 
     def get_product(self , range=None):
-        if self.sort and self.order:
-                self.sort_obj()
-        else:
-            pass
-        if range:
+        # with ajax request
+        sort_by = self.sort_obj()
+        if range and sort_by:
             next_products = int(range)
-            next_products += 50
-            previous_articles = next_products - 20
-            obj = self.products[previous_articles:next_products]
+            next_products += 5
+            previous_articles = next_products - 5
+            if sort_by:
+                obj = self.products.order_by(sort_by)[previous_articles:next_products]
+            else:
+                obj = self.products[previous_articles:next_products]
             return self.data(obj)
+        # first objects with get request
+        elif sort_by:
+            return self.products.order_by(sort_by)[:5]
         else:
-            return self.products[:50]
+            return self.products[:5]
+
+    def sort_obj(self):
+        # if filter request
+        if self.order and self.sort:
+            if self.order == 'asc':
+                sort_by = str(self.sort)
+            elif self.order == 'desc':
+                sort_by = f'-{self.sort}'
+            return sort_by
 
     def data(self , obj):
         # create list for jsonresponse
@@ -43,12 +47,3 @@ class ProductList:
             }
             data.append(item)
         return data
-
-
-    def sort_obj(self):
-        if self.order == 'asc':
-            order = str(self.sort)
-        elif self.order == 'desc':
-            order = f'-{self.sort}'
-        return self.products.order_by(order)
-
