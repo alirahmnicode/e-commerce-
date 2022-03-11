@@ -24,7 +24,11 @@ home
                     <div>
                         <h2>{{product.name}}</h2>
                         <div>
+                            {% if product.discount %}
+                            {{product.discount}}
+                            {% else %}
                             <p>{{product.price}}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

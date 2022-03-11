@@ -13,6 +13,7 @@ class Product(models.Model):
     slug = models.SlugField(null=True)
     recommend = models.BooleanField(default=False , null=True)
     sales_count = models.PositiveIntegerField(default=0,null=True)
+    discount_peresen = models.PositiveIntegerField(default=0,null=True)
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
 
@@ -21,6 +22,10 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product:detail', kwargs={'pk': self.pk , 'slug':self.slug})
+
+    def discount(self):
+        if self.discount_peresen != 0:
+            return self.price - (self.price * self.discount_peresen) / 100 
 
 
 class Option(models.Model):
