@@ -3,6 +3,7 @@ var page_url = window.location.href
 
 $(window).scroll(function (event) {
     if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        console.log(page_url)
         number += 5
         var url_slice = page_url.split('/')
         q = url_slice[url_slice.length-1]

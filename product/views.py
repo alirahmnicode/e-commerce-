@@ -44,7 +44,8 @@ def product_list(request , category):
         next_products = request.GET.get('n')
         sort = request.GET.get('sort_by')
         order = request.GET.get('order')
-        product_list = ProductList(category , sort , order)
+        filter = request.GET.get('filter')
+        product_list = ProductList(category , sort , order , filter)
         if not next_products:
             products = product_list.get_product()
             return render(request , "product/products_list.html",{"products": products,'category':category})

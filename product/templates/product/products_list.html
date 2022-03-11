@@ -34,10 +34,23 @@
         </div>
     </div>
     <div class="filters">
-        <div class="filter">
-                <span class="opt">filter by price</span>
-                <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=desc">expensive</a>
-                <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">inexpensive</a>
+        <div class="title-box">
+            <span>Filter</span>
+        </div>
+        <div class="filter opt">
+            <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=desc">Expensive</a>
+        </div>
+        <div class="filter opt">
+            <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Inexpensive</a>
+        </div>
+        <div class="filter opt">
+            <a href="{% url 'product:product_list' category=category %}?filter=recommend">Recommended</a>
+        </div>
+        <div class="filter opt">
+            <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Most discounts</a>
+        </div>
+        <div class="filter opt">
+            <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Bestsellers</a>
         </div>
     </div>
 </div>
