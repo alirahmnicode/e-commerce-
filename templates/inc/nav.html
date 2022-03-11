@@ -1,15 +1,15 @@
 <nav>
     <div class="logo">
-        <a href="/">home</a>
+        <a href="/" class="item-box">home</a>
     </div>
     <div class="search">
         <form action="" method="get">
             <input type="search" name="query" id="search" placeholder="search..." />
-            <input type="submit" value="search" class="secondary">
+            <input type="submit" value="search" class="search-box">
         </form>
     </div>
     <div class="items">
-        <a href="{% url 'cart:index' %}">cart</a>
-        <a href="">login</a>
+        <a href="{% url 'cart:index' %}" class="item-box">cart</a>
+        <a href="" class="item-box">login</a>
     </div>
 </nav>

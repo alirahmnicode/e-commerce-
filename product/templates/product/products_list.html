@@ -26,7 +26,14 @@
                         <h2>{{product.name}}</h2>
                     </div>
                     <div>
-                        <p>{{product.price}}</p>
+                        {% if product.discount %}
+                        <div>
+                            <p class="price">{{product.discount}}</p>
+                            <p class="line-through p-s">{{product.price}}</p>
+                        </div>
+                        {% else %}
+                        <p class="price">{{product.price}}</p>
+                        {% endif %}
                     </div>
                 </div>
             </a>
@@ -47,7 +54,7 @@
             <a href="{% url 'product:product_list' category=category %}?filter=recommend">Recommended</a>
         </div>
         <div class="filter opt">
-            <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Most discounts</a>
+            <a href="{% url 'product:product_list' category=category %}?sort_by=discount_peresen&order=desc">Most discounts</a>
         </div>
         <div class="filter opt">
             <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Bestsellers</a>

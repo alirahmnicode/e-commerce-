@@ -25,9 +25,12 @@ home
                         <h2>{{product.name}}</h2>
                         <div>
                             {% if product.discount %}
-                            {{product.discount}}
+                            <div>
+                                <p class="price">{{product.discount}}</p>
+                                <p class="line-through p-s">{{product.price}}</p>
+                            </div>
                             {% else %}
-                            <p>{{product.price}}</p>
+                            <p class="price">{{product.price}}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -51,7 +54,14 @@ home
                     <div>
                         <h2>{{product.name}}</h2>
                         <div>
-                            <p>{{product.price}}</p>
+                            {% if product.discount %}
+                            <div>
+                                <p class="price">{{product.discount}}</p>
+                                <p class="line-through p-s">{{product.price}}</p>
+                            </div>
+                            {% else %}
+                            <p class="price">{{product.price}}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -74,7 +84,14 @@ home
                     <div>
                         <h2>{{product.name}}</h2>
                         <div>
-                            <p>{{product.price}}</p>
+                            {% if product.discount %}
+                            <div>
+                                <p class="price">{{product.discount}}</p>
+                                <p class="line-through p-s">{{product.price}}</p>
+                            </div>
+                            {% else %}
+                            <p class="price">{{product.price}}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -87,7 +104,7 @@ home
         <div class="title-box">
             <span>Categoreis</span>
         </div>
-        <div class="boxes">
+        <div class="categoreis-boxes">
             {% for category in product_categories %}
             <a href="{% url 'product:product_list' category.name %}">
                 <div class="category box-hover">
