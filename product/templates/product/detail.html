@@ -27,18 +27,18 @@
             {% for category in product.category.all %}
             <div class="tag">
                 <a href="{% url 'product:pr_ct_list' category.name %}">
-                    <div class="opt">{{category.name}}</div>
+                    <div class="opt alert">{{category.name}}</div>
                 </a>
             </div>
             {% endfor %}
         </div>
         <!-- check if product avalble -->
         {% if not product.available %}
-        <p class="danger">The product is not available </p>
+        <p class="danger alert">The product is not available </p>
         {% endif %}
         <!-- add tocart -->
         <div class="add-to-cart">
-            <button id="add-to-cart" class="secondary">Add to cart</button>
+            <button id="add-to-cart" class="secondary alert">Add to cart</button>
         </div>
     </div>
     <!-- similar posts -->
@@ -62,8 +62,9 @@
         </div>
     </div>
 </div>
-<div class="message success">
+<div class="message alert">
     <div class="close">&times;</div>
+    <div class="message-time"></div>
 </div>
 {% endblock content %}
 
@@ -71,4 +72,5 @@
 {{ product.id |json_script:"product_id" }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/cart.js' %}"></script>
+<script src="{% static 'js/message.js' %}"></script>
 {% endblock js %}

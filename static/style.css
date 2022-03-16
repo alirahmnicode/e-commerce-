@@ -9,14 +9,28 @@ a {
   text-decoration: none;
 }
 
+.alert {
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
 .message {
   position: fixed;
   top: 0;
   left: 0;
   width: 700px;
   display: none;
+  background-color: #f9e6e6;
+  padding: 12px;
 }
 
+.message-time {
+  width: 600px;
+  height: 2px;
+  background-color: #cf203a;
+  margin: 2px 0px 10px 0;
+}
 .close {
   font-size: 30px;
   cursor: pointer;
@@ -32,33 +46,21 @@ button {
 .secondary {
   background-color: #e2e3e5;
   color: #41464b;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 10px;
 }
 
 .opt {
   background-color: #cfe2ff;
   color: #2242a4;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 10px;
 }
 
 .success {
   background-color: #d1e7dd;
   color: #2b5734;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 10px;
 }
 
 .danger {
   background-color: #f8d7da;
   color: #842029;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 10px;
 }
 
 .d-i {
@@ -80,7 +82,7 @@ button {
 }
 
 .item-box {
-  background-color:#3b3bbc;
+  background-color: #3b3bbc;
   padding: 5px;
   border-radius: 5px;
   color: #fff;
@@ -109,7 +111,6 @@ nav .search input[type="search"] {
   padding: 5px;
   border-radius: 5px;
 }
-
 
 .search-box {
   background-color: #27c28c;
