@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}
-home
-{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'product.css' %}?{% now 'U' %}">
+<title>home</title>
+{% endblock head %}
 
 
 {% block content %}
@@ -119,5 +121,9 @@ home
     </div>
 </div>
 
-
 {% endblock content %}
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock js %}

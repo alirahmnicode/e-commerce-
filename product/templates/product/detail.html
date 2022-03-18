@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-{{product.name}}
-{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'product-detail.css' %}?{% now 'U' %}">
+<title>{{product.name}}</title>
+{% endblock head %}
 
 {% block content %}
 {% include 'inc/nav.html' %}
 <div class="detail-product">
     <!-- detial product -->
     <div class="product">
-        <h1>{{product.name}}</h1>
-        <p>{{product.description}}</p>
+        <div class="info">
+            <h1>{{product.name}}</h1>
+            <p>{{product.description}}</p>
+        </div>
         <!-- options -->
         <div class="options">
             {% for options in product.options.all %}
@@ -54,6 +57,16 @@
                         <div><img src="{{product.image.url}}" alt=""></div>
                         <div>
                             <h4>{{product.name}}</h4>
+                            <div>
+                                {% if product.discount %}
+                                <div>
+                                    <p class="price">{{product.discount}}</p>
+                                    <p class="line-through p-s">{{product.price}}</p>
+                                </div>
+                                {% else %}
+                                <p class="price">{{product.price}}</p>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -73,4 +86,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/cart.js' %}"></script>
 <script src="{% static 'js/message.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
 {% endblock js %}

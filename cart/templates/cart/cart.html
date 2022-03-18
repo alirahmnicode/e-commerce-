@@ -1,55 +1,69 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} cart {% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'cart.css' %}?{% now 'U' %}">
+<title>cart</title>
+{% endblock head %}
 {% block content %}
-
-<table class="cart">
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Remove</th>
-            <th>Unit price</th>
-            <th>Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-        {% with product=item.product %}
-        <tr>
-            <td>
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{{ product.image.url}}" />
-                </a>
-            </td>
-            <td>{{ product.name }}</td>
-            <td>
-                <div class="quantity">
-                    <div class="plus">&plus;</div>
-                    <div>{{ item.quantity }}</div>
-                    <div class="minus">&#8722;</div>
+{% include 'inc/nav.html' %}
+<div class="cart">
+    <div class="price">
+        <div>
+            <div>
+                <div>Products price:</div>
+                <div>${{ cart.get_total_price }}</div>
+            </div>
+            <div>
+                <div>Price payable:</div>
+                <div>${{ cart.get_total_price }}</div>
+            </div>
+        </div>
+        <div>
+            <a href="" class="checkout">Checkout</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="products">
+            {% for item in cart %}
+            {% with product=item.product %}
+            <div class="product">
+                <div class="cover">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.image.url}}" />
+                    </a>
                 </div>
-            </td>
-            <td>
-                <form action="{% url 'cart:remove' %}" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="Remove" class="danger">
-                    <input type="hidden" name="product_id" value="{{product.pk}}">
-                </form>
-            </td>
-            <td class="num">${{ item.price }}</td>
-            <td class="num">${{ item.total_price }}</td>
-        </tr>
-        {% endwith %}
-        {% endfor %}
-        <tr class="total">
-            <td>Total</td>
-            <td colspan="4"></td>
-            <td class="num total-price">${{ cart.get_total_price }}</td>
-        </tr>
-    </tbody>
-</table>
+                <div class="info">
+                    <div>
+                        <span>{{ product.name }}</span>
+                    </div>
+                    <div class="options">
+                        <ul>
+                            {% for options in product.options.all %}
+                            <li>{{options.opt}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="quantity">
+                        <div class="plus">&plus;</div>
+                        <div>{{ item.quantity }}</div>
+                        <div class="minus">&#8722;</div>
+                    </div>
+                    <form action="{% url 'cart:remove' %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Remove" class="danger alert">
+                        <input type="hidden" name="product_id" value="{{product.pk}}">
+                    </form>
+                    <div>
+                        <span>${{ item.price }}</span>
+                        <span>${{ item.total_price }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock content %}
 
 

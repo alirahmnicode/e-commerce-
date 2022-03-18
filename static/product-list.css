@@ -1,0 +1,36 @@
+.products-container {
+  display: flex;
+}
+
+.pr-list {
+  flex: 80%;
+}
+.filters {
+  flex: 20%;
+  margin-top: 50px;
+  box-shadow: 0 0 4px 1px #ccc inset;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.filter a {
+  color: royalblue;
+}
+
+.filter > div {
+  margin: 10px 10px;
+}
+
+@media only screen and (max-width: 650px) {
+  .products-container {
+    flex-direction: column-reverse;
+  }
+  .filter-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .filters {
+    box-shadow: inherit;
+  }
+}

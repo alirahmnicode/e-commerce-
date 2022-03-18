@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-{{category}}
-{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'product-list.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'product.css' %}?{% now 'U' %}">
+<title>{{category}}</title>
+{% endblock head %}
 
 
 {% block content %}
@@ -44,20 +46,23 @@
         <div class="title-box">
             <span>Filter</span>
         </div>
-        <div class="filter opt">
-            <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=desc">Expensive</a>
-        </div>
-        <div class="filter opt">
-            <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Inexpensive</a>
-        </div>
-        <div class="filter opt">
-            <a href="{% url 'product:product_list' category=category %}?filter=recommend">Recommended</a>
-        </div>
-        <div class="filter opt">
-            <a href="{% url 'product:product_list' category=category %}?sort_by=discount_peresen&order=desc">Most discounts</a>
-        </div>
-        <div class="filter opt">
-            <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Bestsellers</a>
+        <div class="filter-box">
+            <div class="filter opt alert">
+                <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=desc">Expensive</a>
+            </div>
+            <div class="filter opt alert">
+                <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Inexpensive</a>
+            </div>
+            <div class="filter opt alert">
+                <a href="{% url 'product:product_list' category=category %}?filter=recommend">Recommended</a>
+            </div>
+            <div class="filter opt alert">
+                <a href="{% url 'product:product_list' category=category %}?sort_by=discount_peresen&order=desc">Most
+                    discounts</a>
+            </div>
+            <div class="filter opt alert">
+                <a href="{% url 'product:product_list' category=category %}?sort_by=price&order=asc">Bestsellers</a>
+            </div>
         </div>
     </div>
 </div>
@@ -65,4 +70,5 @@
 {% block js %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/receiveobjbyscroll.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
 {% endblock js %}
