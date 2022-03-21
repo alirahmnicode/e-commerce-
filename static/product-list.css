@@ -27,7 +27,6 @@
   }
   .filter-box {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
   }
   .filters {

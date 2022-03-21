@@ -1,5 +1,4 @@
 from product.models import Product
-from django.shortcuts import get_object_or_404
 from decimal import Decimal
 
 
@@ -40,6 +39,7 @@ class Cart:
         """
         Add a product to the cart or update its quantity.
         """
+        self.cart_counter()
         product_id = str(product.id)
         # add
         if product_id not in self.cart and quantity != -1:
@@ -68,18 +68,18 @@ class Cart:
                 'total_price':total_price,
             }
 
-
-
     def remove(self, product_id):
         """
         Remove a product from the cart.
         """
+        self.cart_counter()
         if str(product_id) in self.cart:
             del self.cart[str(product_id)]
         self.save()
         return True
 
     def clear(self):
+        self.cart_counter()
         # remove the cart from session
         del self.session["cart"]
         self.save()
@@ -87,5 +87,12 @@ class Cart:
     def get_total_price(self):
         return sum(int(item['price']) * item['quantity'] for item in self.cart.values())
 
+    def cart_counter(self):
+        count = 0
+        for item in self.cart.values():
+            count+= int(item['quantity'])
+        print(count,'al8'*20)
+        self.session['cart_counter'] = int(count)
+            
     def save(self):
         self.session.modified = True

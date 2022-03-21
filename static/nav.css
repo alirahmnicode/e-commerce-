@@ -40,8 +40,30 @@ nav .search input[type="search"] {
   background-color: rgb(92, 92, 92);
   margin: 5px 0;
 }
+.items {
+  display: flex;
+  align-items: center;
+}
 
+.items img {
+  width: 27px;
+}
 
+.cart-btn {
+  position: relative;
+}
+
+.cart-btn span {
+  position: absolute;
+  top: 15px;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #ee3f55;
+  height: 20px;
+  min-width: 20px;
+  text-align: center;
+  right: 13px;
+}
 @media only screen and (max-width: 500px) {
   .logo,
   .items {

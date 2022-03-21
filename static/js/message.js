@@ -14,6 +14,5 @@ function closeMessage() {
         if (parseInt(width) <= 0) {
             clearInterval(id)
         }
-        console.log(width)
     }
 }

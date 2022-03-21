@@ -1,6 +1,6 @@
 <nav>
     <div class="logo">
-        <a href="/" class="item-box">home</a>
+        <a href="/" class="">home</a>
     </div>
     <div class="search">
         <form action="" method="get">
@@ -9,8 +9,16 @@
         </form>
     </div>
     <div class="items">
-        <a href="{% url 'cart:index' %}" class="item-box">cart</a>
-        <a href="" class="item-box">login</a>
+        <a href="{% url 'cart:index' %}" class="cart-btn">
+            <div>
+                <img
+                    src="https://img.icons8.com/external-obivous-color-kerismaker/48/000000/external-cart-ecommerce-color-obivous-color-kerismaker.png" />
+            </div>
+            {% if request.session.cart|length > 0 %}
+                <span class="cart-count">{{request.session.cart_counter}}</span>
+            {% endif %}
+        </a>
+        <a href="" class="">login</a>
     </div>
     <div class="menu-btn">
         <div></div>

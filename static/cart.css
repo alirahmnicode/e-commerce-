@@ -88,3 +88,39 @@
 .info > div {
   margin: 20px 0;
 }
+
+.options {
+  color: #a8a8a8;
+}
+@media only screen and (max-width:800px) {
+  .cart {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width:550px) {
+  .product > .cover img {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width:400px) {
+  .product {
+    flex-direction: column;
+  }
+
+  .info > div {
+    margin: 0;
+  }
+
+  .info > div:first-child {
+    margin: 10px 0;
+  }
+}
+
+@media only screen and (max-width:350px) {
+  .cart {
+    margin: 0;
+  }
+ 
+}

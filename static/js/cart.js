@@ -32,25 +32,27 @@ add.click(function (e) {
 
 // Increase exist product in cart
 plus_btn.click(function (event) {
+    cartBtnCount(1)
     element = event.target
     // get current quantity div
     var quantity_div = element.nextElementSibling
     // get product id
     const product_id = productId(element)
     // get price div
-    const price = element.offsetParent.nextElementSibling.nextElementSibling.nextElementSibling
+    const price = element.parentElement.parentElement.lastElementChild
     add_to_cart('plus', quantity_div, product_id, price)
 })
 
 // Decrease exist product in cart
 minus_btn.click(function (event) {
+    cartBtnCount(-1)
     element = event.target
     // get current quantity div
     var quantity_div = element.previousElementSibling
     // get product id
     const product_id = productId(element)
     // get price div
-    const price = element.offsetParent.nextElementSibling.nextElementSibling.nextElementSibling
+    const price = element.parentElement.parentElement.lastElementChild
     add_to_cart('minus', quantity_div, product_id, price)
 })
 
@@ -65,6 +67,7 @@ function add_to_cart(act, quantity_div, product_id, price) {
         success: function (response) {
             // add product
             if (act === 'add') {
+                cartBtnCount(1)
                 var message = $('.message')
                 var product_name = $('h1')[0].textContent
                 var text_message = $('.text-message')
@@ -78,7 +81,7 @@ function add_to_cart(act, quantity_div, product_id, price) {
                 </div>
                 `
                 message.append(text)
-                message.css('display','block')
+                message.css('display', 'block')
             } else {
                 // increase or decrease product
                 quantity_div.textContent = response.quantity
@@ -99,7 +102,7 @@ function add_to_cart(act, quantity_div, product_id, price) {
 // get product id
 function productId(element) {
     // get link
-    var a = element.offsetParent.previousElementSibling.previousElementSibling.childNodes[1].pathname
+    var a = element.parentElement.parentElement.previousElementSibling.firstElementChild.pathname
     const product_id = a.split('/')[2]
     return product_id
 }
@@ -109,8 +112,16 @@ function productId(element) {
 // close btn
 var close = $('.close')
 
-close.click(function(e){
+close.click(function (e) {
     var close_div = e.target
     // close parent element
-    close_div.parentElement.style.display='none'
+    close_div.parentElement.style.display = 'none'
 })
+
+
+var cartBtn = $('.cart-count')
+
+function cartBtnCount(i) {
+    var count = parseInt(cartBtn[0].textContent) + i
+    cartBtn[0].textContent = count
+}
