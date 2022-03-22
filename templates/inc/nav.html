@@ -2,27 +2,20 @@
     <div class="logo">
         <a href="/" class="">home</a>
     </div>
-    <div class="search">
-        <form action="" method="get">
+    <div>
+        <div class="search">
             <input type="search" name="query" id="search" placeholder="search..." />
-            <input type="submit" value="search" class="search-box">
-        </form>
-    </div>
-    <div class="items">
-        <a href="{% url 'cart:index' %}" class="cart-btn">
-            <div>
-                <img
-                    src="https://img.icons8.com/external-obivous-color-kerismaker/48/000000/external-cart-ecommerce-color-obivous-color-kerismaker.png" />
-            </div>
-            {% if request.session.cart|length > 0 %}
+        </div>
+        <div class="cart">
+            <a href="{% url 'cart:index' %}" class="cart-btn">
+                <div>
+                    <img
+                        src="https://img.icons8.com/external-obivous-color-kerismaker/48/000000/external-cart-ecommerce-color-obivous-color-kerismaker.png" />
+                </div>
+                {% if request.session.cart|length > 0 %}
                 <span class="cart-count">{{request.session.cart_counter}}</span>
-            {% endif %}
-        </a>
-        <a href="" class="">login</a>
-    </div>
-    <div class="menu-btn">
-        <div></div>
-        <div></div>
-        <div></div>
+                {% endif %}
+            </a>
+        </div>
     </div>
 </nav>

@@ -104,9 +104,12 @@ button {
   position: fixed;
   top: 100%;
   transition: 0.8s;
+  overflow: scroll;
+  padding-bottom: 100px;
 }
 
 .close-popup {
-  font-size: 30px;
+  font-size: 40px;
   cursor: pointer;
+  margin-left: 10px;
 }

@@ -23,15 +23,12 @@
     {% block content %}
     {% endblock content %}
     <div class="popup">
-        <div class="close-popup">&times;</div>
-        <div class="items">
-            <a href="{% url 'cart:index' %}" class="item-box">cart</a>
-            <a href="" class="item-box">login</a>
-        </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
     {% block js %}
     {% endblock js %}
-
 </body>
 
 </html>

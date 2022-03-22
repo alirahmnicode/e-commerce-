@@ -6,14 +6,23 @@ nav {
   padding: 20px;
 }
 
+nav > div:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 nav a {
-  margin: 0 10px;
   color: #9b9b9b;
   font-size: 17px;
 }
 
 nav a:hover {
   color: black;
+}
+
+.search {
+  margin-right: 20px;
 }
 
 nav .search input[type="search"] {
@@ -23,29 +32,12 @@ nav .search input[type="search"] {
   border-radius: 5px;
 }
 
-.search-box {
-  background-color: #27c28c;
-  border-radius: 5px;
-  padding: 5px;
-  color: #fff;
-}
-
-.menu-btn {
-  cursor: pointer;
-  display: none;
-}
-.menu-btn > div {
-  width: 20px;
-  height: 2px;
-  background-color: rgb(92, 92, 92);
-  margin: 5px 0;
-}
-.items {
+.cart {
   display: flex;
   align-items: center;
 }
 
-.items img {
+.cart img {
   width: 27px;
 }
 
@@ -55,21 +47,44 @@ nav .search input[type="search"] {
 
 .cart-btn span {
   position: absolute;
-  top: 15px;
+  top: -15px;
   border-radius: 6px;
   color: #fff;
   background-color: #ee3f55;
   height: 20px;
   min-width: 20px;
   text-align: center;
-  right: 13px;
+  right: -15px;
 }
-@media only screen and (max-width: 500px) {
-  .logo,
-  .items {
-    display: none;
-  }
-  .menu-btn {
+
+.result {
+  padding-right: 12px;
+  box-shadow: 0px 2px 9px 0px #c1c1c1;
+  margin: 10px;
+}
+
+.result > a > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result > a > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.result img {
+  width: 100px;
+}
+
+@media only screen and (max-width: 350px) {
+  nav {
     display: block;
+  }
+  .logo {
+    margin-bottom: 10px;
+    text-align: center;
   }
 }

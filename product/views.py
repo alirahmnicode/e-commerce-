@@ -1,11 +1,12 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import redirect, render, get_object_or_404, get_list_or_404
 from django.views.generic import ListView
 from django.http import JsonResponse
 
 from .models import Product, CategoryForProduct
 from .similar_product import similar
 from .product_list import ProductList
-
+from .search import search_obj
+from cart.views import is_ajax
 
 class Index(ListView):
     model = Product
@@ -53,3 +54,10 @@ def product_list(request , category):
             products = product_list.get_product(next_products)
             # create dict for response
             return JsonResponse(products,safe=False)
+
+
+def search(request):
+    if is_ajax(request):
+        query = request.GET.get('q')
+        search_result = search_obj(query)
+        return JsonResponse(search_result,safe=False)

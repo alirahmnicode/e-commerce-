@@ -2,7 +2,7 @@ from .models import Product
 
 
 class ProductList:
-    def __init__(self ,category , sort , order , filter):
+    def __init__(self ,category=None , sort=None , order=None , filter=None):
         self.products = Product.objects.filter(category__name=category)
         self.sort = sort
         self.order = order
