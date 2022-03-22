@@ -8,5 +8,4 @@ def similar(pk):
     product_categoreis_ids = product.category.values_list('id' , flat=True)
     similar_product = Product.objects.filter(category__in=product_categoreis_ids).exclude(id=product.id)
     similar_product = similar_product.annotate(same_category=Count('category'))
-    print(similar_product)
     return similar_product
