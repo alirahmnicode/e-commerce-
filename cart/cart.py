@@ -88,10 +88,9 @@ class Cart:
         return sum(int(item['price']) * item['quantity'] for item in self.cart.values())
 
     def cart_counter(self):
-        count = 0
+        count = 1
         for item in self.cart.values():
             count+= int(item['quantity'])
-        print(count,'al8'*20)
         self.session['cart_counter'] = int(count)
             
     def save(self):
