@@ -108,17 +108,6 @@ function productId(element) {
 }
 
 
-
-// close btn
-var close = $('.close')
-
-close.click(function (e) {
-    var close_div = e.target
-    // close parent element
-    close_div.parentElement.style.display = 'none'
-})
-
-
 var cartBtn = $('.cart-count')
 
 function cartBtnCount(i) {
