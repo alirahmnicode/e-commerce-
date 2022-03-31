@@ -1,3 +1,4 @@
+{% load custom_tags %}
 <nav>
     <div class="logo">
         <a href="/" class="">home</a>
@@ -13,7 +14,7 @@
                         src="https://img.icons8.com/external-obivous-color-kerismaker/48/000000/external-cart-ecommerce-color-obivous-color-kerismaker.png" />
                 </div>
                 {% if request.session.cart|length > 0 %}
-                <span class="cart-count">{{request.session.cart_counter}}</span>
+                <span class="cart-count">{{request.session.cart | counter}}</span>
                 {% endif %}
             </a>
         </div>
