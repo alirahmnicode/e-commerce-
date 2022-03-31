@@ -32,12 +32,12 @@ nav .search input[type="search"] {
   border-radius: 5px;
 }
 
-.cart {
+.cart-box {
   display: flex;
   align-items: center;
 }
 
-.cart img {
+.cart-box img {
   width: 27px;
 }
 
