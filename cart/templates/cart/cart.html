@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'cart.css' %}?{% now 'U' %}">
 <title>cart</title>
@@ -14,11 +15,11 @@
             <div>
                 <div>
                     <div>Products price:</div>
-                    <div>${{ cart.get_total_price }}</div>
+                    <div>{{ cart.get_total_price | price}}</div>
                 </div>
                 <div>
                     <div>Price payable:</div>
-                    <div>${{ cart.get_total_price }}</div>
+                    <div>{{ cart.get_total_price | price}}</div>
                 </div>
             </div>
             <div>
@@ -57,7 +58,7 @@
                             <input type="hidden" name="product_id" value="{{product.pk}}">
                         </form>
                         <div>
-                            <span>${{ item.total_price }}</span>
+                            <span>{{ item.total_price | price}}</span>
                         </div>
                     </div>
                 </div>

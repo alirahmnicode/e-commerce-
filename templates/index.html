@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_tags %}
 {% load static %}
 
 {% block head %}
@@ -28,11 +29,11 @@
                         <div>
                             {% if product.discount %}
                             <div>
-                                <p class="price">{{product.discount}}</p>
-                                <p class="line-through p-s">{{product.price}}</p>
+                                <p class="price">{{product.discount | price}}</p>
+                                <p class="line-through p-s">{{product.price | price}}</p>
                             </div>
                             {% else %}
-                            <p class="price">{{product.price}}</p>
+                            <p class="price">{{product.price | price}}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -58,11 +59,11 @@
                         <div>
                             {% if product.discount %}
                             <div>
-                                <p class="price">{{product.discount}}</p>
-                                <p class="line-through p-s">{{product.price}}</p>
+                                <p class="price">{{product.discount | price}}</p>
+                                <p class="line-through p-s">{{product.price | price}}</p>
                             </div>
                             {% else %}
-                            <p class="price">{{product.price}}</p>
+                            <p class="price">{{product.price | price}}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -88,11 +89,11 @@
                         <div>
                             {% if product.discount %}
                             <div>
-                                <p class="price">{{product.discount}}</p>
-                                <p class="line-through p-s">{{product.price}}</p>
+                                <p class="price">{{product.discount | price}}</p>
+                                <p class="line-through p-s">{{product.price | price}}</p>
                             </div>
                             {% else %}
-                            <p class="price">{{product.price}}</p>
+                            <p class="price">{{product.price | price}}</p>
                             {% endif %}
                         </div>
                     </div>
