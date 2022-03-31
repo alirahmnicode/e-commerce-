@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'product-list.css' %}?{% now 'U' %}">
@@ -30,11 +31,11 @@
                     <div>
                         {% if product.discount %}
                         <div>
-                            <p class="price">{{product.discount}}</p>
-                            <p class="line-through p-s">{{product.price}}</p>
+                            <p class="price">{{product.discount | price}}</p>
+                            <p class="line-through p-s">{{product.price | price}}</p>
                         </div>
                         {% else %}
-                        <p class="price">{{product.price}}</p>
+                        <p class="price">{{product.price | price}}</p>
                         {% endif %}
                     </div>
                 </div>

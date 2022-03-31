@@ -1,3 +1,4 @@
+{% load custom_tags %}
 <nav>
     <div class="logo">
         <a href="/" class="">home</a>
@@ -6,14 +7,18 @@
         <div class="search">
             <input type="search" name="query" id="search" placeholder="search..." />
         </div>
+<<<<<<< HEAD
         <div class="cart-box">
+=======
+        <div class="cart-logo">
+>>>>>>> 2962351b377abeb4f855f4ac8c51ae196d8fc10c
             <a href="{% url 'cart:index' %}" class="cart-btn">
                 <div>
                     <img
                         src="https://img.icons8.com/external-obivous-color-kerismaker/48/000000/external-cart-ecommerce-color-obivous-color-kerismaker.png" />
                 </div>
                 {% if request.session.cart|length > 0 %}
-                <span class="cart-count">{{request.session.cart_counter}}</span>
+                <span class="cart-count">{{request.session.cart | counter}}</span>
                 {% endif %}
             </a>
         </div>
