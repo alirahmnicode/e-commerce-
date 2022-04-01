@@ -32,18 +32,26 @@ nav .search input[type="search"] {
   border-radius: 5px;
 }
 
+<<<<<<< HEAD
 
 .cart-logo {
 
+=======
+.cart-logo {
+>>>>>>> 293b6fada0862aa791f00f17795cec64794aed76
   display: flex;
   align-items: center;
 }
 
+<<<<<<< HEAD
 
 
 
 .cart-logo img {
 
+=======
+.cart-logo img {
+>>>>>>> 293b6fada0862aa791f00f17795cec64794aed76
   width: 27px;
 }
 
