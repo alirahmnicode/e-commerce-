@@ -32,20 +32,18 @@ nav .search input[type="search"] {
   border-radius: 5px;
 }
 
-<<<<<<< HEAD
-.cart-box {
-=======
+
 .cart-logo {
->>>>>>> 2962351b377abeb4f855f4ac8c51ae196d8fc10c
+
   display: flex;
   align-items: center;
 }
 
-<<<<<<< HEAD
-.cart-box img {
-=======
+
+
+
 .cart-logo img {
->>>>>>> 2962351b377abeb4f855f4ac8c51ae196d8fc10c
+
   width: 27px;
 }
 
