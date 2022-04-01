@@ -36,9 +36,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.price {
-  padding: 5px;
-}
+
 .categoreis-boxes {
   display: flex;
   flex-wrap: wrap;

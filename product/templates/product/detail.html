@@ -9,53 +9,53 @@
 
 {% block content %}
 {% include 'inc/nav.html' %}
-<div class="detail-product">
-    <!-- detial product -->
-    <div class="product">
-        <div class="info">
-            <h1>{{product.name}}</h1>
-            <p>{{product.description}}</p>
-        </div>
-        <!-- options -->
-        <div class="options">
-            {% for options in product.options.all %}
-            <div><span>{{options.opt}}</span></div>
-            {% endfor %}
-        </div>
-        <div>
-            {% if product.discount %}
-            <div>
+<div class="content">
+    <div class="detail-product">
+        <!-- detial product -->
+        <div class="product">
+            <!-- check if product avalble -->
+            {% if not product.available %}
+            <p class="danger alert">The product is not available </p>
+            {% endif %}
+            <div class="info">
+                <h1>{{product.name}}</h1>
+                <p>{{product.description}}</p>
+            </div>
+            <!-- options -->
+            <div class="options">
+                {% for options in product.options.all %}
+                <div><span>{{options.opt}}</span></div>
+                {% endfor %}
+            </div>
+            <!-- image -->
+            <div class="image">
+                <img src="{{product.image.url}}" alt="">
+            </div>
+            <div class="price-b">
+                {% if product.discount %}
                 <p class="price">{{product.discount | price}}</p>
                 <p class="line-through p-s">{{product.price | price}}</p>
+                {% else %}
+                <p class="price">{{product.price | price}}</p>
+                {% endif %}
             </div>
-            {% else %}
-            <p class="price">{{product.price | price}}</p>
-            {% endif %}
+            <!-- categories -->
+            <div class="categories">
+                {% for category in product.category.all %}
+                <div class="tag">
+                    <a href="{% url 'product:pr_ct_list' category.name %}">
+                        <div class="opt alert">{{category.name}}</div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- add tocart -->
+            <div class="add-to-cart">
+                <button id="add-to-cart" class="secondary alert">Add to cart</button>
+            </div>
         </div>
     </div>
-        <!-- image -->
-        <div class="image">
-            <img src="{{product.image.url}}" alt="">
-        </div>
-        <!-- categories -->
-        <div class="categories">
-            {% for category in product.category.all %}
-            <div class="tag">
-                <a href="{% url 'product:pr_ct_list' category.name %}">
-                    <div class="opt alert">{{category.name}}</div>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        <!-- check if product avalble -->
-        {% if not product.available %}
-        <p class="danger alert">The product is not available </p>
-        {% endif %}
-        <!-- add tocart -->
-        <div class="add-to-cart">
-            <button id="add-to-cart" class="secondary alert">Add to cart</button>
-        </div>
-    </div>
+    {% if similar_posts.count > 0 %}
     <!-- similar posts -->
     <div class="similar-product">
         <div class="products p-box">
@@ -86,6 +86,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 <div class="message alert">
     <div class="close">&times;</div>
