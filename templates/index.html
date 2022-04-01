@@ -25,7 +25,7 @@
                     <div><img src="{{product.image.url}}" alt=""></div>
                     {% endif %}
                     <div>
-                        <h2>{{product.name}}</h2>
+                        <h2>{{product.name|slice:":50"}}</h2>
                         <div>
                             {% if product.discount %}
                             <div>
@@ -55,7 +55,7 @@
                     <div><img src="{{product.image.url}}" alt=""></div>
                     {% endif %}
                     <div>
-                        <h2>{{product.name}}</h2>
+                        <h2>{{product.name|slice:":50"}}</h2>
                         <div>
                             {% if product.discount %}
                             <div>
@@ -85,7 +85,7 @@
                     <div><img src="{{product.image.url}}" alt=""></div>
                     {% endif %}
                     <div>
-                        <h2>{{product.name}}</h2>
+                        <h2>{{product.name|slice:":50"}}</h2>
                         <div>
                             {% if product.discount %}
                             <div>

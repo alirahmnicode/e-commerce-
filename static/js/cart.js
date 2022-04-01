@@ -60,9 +60,10 @@ minus_btn.click(function (event) {
 // send ajax request
 function add_to_cart(act, quantity_div, product_id, price) {
     var quantity = act
+    var url = `${window.location.origin}/cart/add/${product_id}/${quantity}/`
     $.ajax({
         type: "POST",
-        url: `http://localhost:8000/cart/add/${product_id}/${quantity}/`,
+        url: url,
         headers: { 'X-CSRFToken': csrftoken },
         success: function (response) {
             // add product
