@@ -17,12 +17,12 @@ function getCookie(name) {
 
 const csrftoken = getCookie('csrftoken');
 
+console.log(csrftoken)
 // get btns
-add = $('#add-to-cart')
-plus_btn = $('.plus')
-minus_btn = $('.minus')
-
-total = $('.total-price')
+var add = $('#add-to-cart')
+var plus_btn = $('.plus')
+var minus_btn = $('.minus')
+var total = $('.total-price')
 
 // add to cart
 add.click(function (e) {
@@ -61,6 +61,7 @@ minus_btn.click(function (event) {
 function add_to_cart(act, quantity_div, product_id, price) {
     var quantity = act
     var url = `${window.location.origin}/cart/add/${product_id}/${quantity}/`
+    console.log(url)
     $.ajax({
         type: "POST",
         url: url,

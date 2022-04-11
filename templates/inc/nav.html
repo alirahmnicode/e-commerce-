@@ -19,6 +19,8 @@
                 </div>
                 {% if request.session.cart|length > 0 %}
                 <span class="cart-count">{{request.session.cart | counter}}</span>
+                {% else %}
+                <span class="cart-count">0</span>
                 {% endif %}
             </a>
         </div>
