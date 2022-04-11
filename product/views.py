@@ -1,5 +1,4 @@
-from django.shortcuts import redirect, render, get_object_or_404, get_list_or_404
-from django.views.generic import ListView
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import JsonResponse
 
 from .models import Product, CategoryForProduct
@@ -8,20 +7,9 @@ from .product_list import ProductList
 from .search import search_obj
 from cart.views import is_ajax
 
-# class Index(ListView):
-#     model = Product
-#     template_name = "index.html"
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["last_product"] = get_list_or_404(Product)[:10]
-#         context["product_categories"] = get_list_or_404(CategoryForProduct)[:10]
-#         context["recommends"] = Product.objects.filter(recommend=True)[:10]
-#         context["bestsellers"] = Product.objects.all().order_by("-sales_count")[:10]
-#         return context
 
 def index(request):
-    last_product = get_list_or_404(Product)[:10]
+    last_product = Product.objects.all().order_by('-create')[:10]
     product_categories = get_list_or_404(CategoryForProduct)[:10]
     recommends = Product.objects.filter(recommend=True)[:10]
     bestsellers = Product.objects.all().order_by("-sales_count")[:10]
