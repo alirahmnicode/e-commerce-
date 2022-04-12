@@ -60,7 +60,6 @@ minus_btn.click(function (event) {
 function add_to_cart(act, quantity_div, product_id, price) {
     var quantity = act
     var url = `${window.location.origin}/cart/add/${product_id}/${quantity}/`
-    console.log(url)
     $.ajax({
         type: "POST",
         url: url,

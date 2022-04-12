@@ -1,10 +1,10 @@
 const addBtn = $('#add-to-cart')
+const messageBox = $('.message')
 const close = $('.close')
 
 addBtn.click(function () {
     move()
 })
-
 
 var i = 0;
 function move() {
@@ -16,6 +16,7 @@ function move() {
         function frame() {
             if (width >= 100) {
                 clearInterval(id);
+                messageBox.css('display','none')
                 i = 0;
             } else {
                 width++;
@@ -24,8 +25,6 @@ function move() {
         }
     }
 }
-
-
 
 close.click(function (e) {
     var close_div = e.target
