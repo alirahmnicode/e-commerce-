@@ -11,8 +11,9 @@ a {
 }
 
 h2 {
-    font-size:12px;
+  font-size: 12px;
 }
+
 .alert {
   padding: 5px;
   border-radius: 5px;
@@ -23,18 +24,27 @@ h2 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 700px;
+  width: 100%;
   display: none;
   background-color: #f9e6e6;
-  padding: 12px;
+  padding: 5px 12px;
 }
 
-.message-time {
-  width: 600px;
-  height: 2px;
-  background-color: #cf203a;
-  margin: 2px 0px 10px 0;
+#myProgress {
+  width: 100%;
+  background-color: #fff;
 }
+
+#myBar {
+  width: 1%;
+  height: 3px;
+  background-color: #842029;
+}
+
+.text-message a {
+  color: #842029;
+}
+
 .close {
   font-size: 30px;
   cursor: pointer;

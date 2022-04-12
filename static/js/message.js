@@ -1,22 +1,26 @@
 const addBtn = $('#add-to-cart')
-const messageBox = $('.message')
 const close = $('.close')
 
 addBtn.click(function () {
-    closeMessage()
+    move()
 })
 
 
-function closeMessage() {
-    var width = messageBox.width()
-    $(".message-time").css('width' , width)
-    var id = setInterval(frame, 10)
-    function frame() {
-        width = width - 1
-        $(".message-time").css('width', width)
-        if (parseInt(width) <= 0) {
-            clearInterval(id)
-            messageBox.css('display','none')
+var i = 0;
+function move() {
+    if (i == 0) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 1;
+        var id = setInterval(frame, 50);
+        function frame() {
+            if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+            } else {
+                width++;
+                elem.style.width = width + "%";
+            }
         }
     }
 }

@@ -88,6 +88,9 @@
 }
 
 @media only screen and (max-width: 550px) {
+  .content {
+    padding: 10px 5px;
+  }
   .detail-product {
     margin-top: 0px;
   }

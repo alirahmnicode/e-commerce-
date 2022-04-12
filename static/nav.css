@@ -2,11 +2,12 @@
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   box-shadow: 0 0 23px 0 #bdbdbd;
   padding: 20px;
 }
 
-nav > div:last-child {
+nav>div:last-child {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,6 +27,7 @@ nav a:hover {
 }
 
 nav .search input[type="search"] {
+  height: 40px;
   border: 1px solid #27c28c;
   outline: none;
   padding: 5px;
@@ -63,13 +65,13 @@ nav .search input[type="search"] {
   margin: 10px;
 }
 
-.result > a > div {
+.result>a>div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.result > a > div > div {
+.result>a>div>div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -83,6 +85,7 @@ nav .search input[type="search"] {
   nav {
     display: block;
   }
+
   .logo {
     margin-bottom: 10px;
     text-align: center;
