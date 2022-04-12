@@ -92,8 +92,6 @@ nav .search input[type="search"] {
   }
 }
 
-@media only screen and (max-width: 700px) {
-  .logo > a{
-    font-size: 20px;
-  }
+.logo > a{
+  font-size: 20px;
 }
