@@ -18,7 +18,6 @@ searchBox.keyup(function () {
                 }
                 response.product.forEach(search_result);
                 response.category.forEach(search_result);
-                console.log(response)
                 if(response.product.length == 0 && response.category.length == 0) {
                     var alert = '<div class="danger alert">nothing find...</div>'
                     popup.append(alert)

@@ -17,7 +17,6 @@ function getCookie(name) {
 
 const csrftoken = getCookie('csrftoken');
 
-console.log(csrftoken)
 // get btns
 var add = $('#add-to-cart')
 var plus_btn = $('.plus')
