@@ -1,5 +1,6 @@
 from product.models import Product
 from decimal import Decimal
+from .templatetags.custom_tags import counter
 
 
 class Cart:
@@ -42,7 +43,10 @@ class Cart:
         product_id = str(product.id)
         # add
         if product_id not in self.cart and quantity != -1:
-            self.cart[product_id] = {"quantity": quantity, "price": str(product.price)}
+            self.cart[product_id] = {
+                "quantity": quantity,
+                "price": str(self.get_price(product)),
+            }
         # update
         elif product_id in self.cart:
             self.cart[product_id]["quantity"] += quantity
@@ -50,21 +54,24 @@ class Cart:
             if self.cart[product_id]["quantity"] == 0:
                 self.removed_product = self.remove(int(product_id))
         self.save()
-        if not self.removed_product and  product_id in self.cart:
-            price = self.cart[product_id]["quantity"] * int(self.cart[product_id]["price"])
+        if not self.removed_product and product_id in self.cart:
+            price = self.cart[product_id]["quantity"] * int(
+                self.cart[product_id]["price"]
+            )
             total_price = self.get_total_price()
             quantity = self.cart[product_id]["quantity"]
             return {
                 "quantity": quantity,
                 "price": price,
-                'total_price':total_price,
-                'remove':False
+                "total_price": total_price,
+                "count":counter(self.session['cart']),
+                "remove": False,
             }
         else:
             total_price = self.get_total_price()
             return {
-                'remove':True,
-                'total_price':total_price,
+                "remove": True,
+                "total_price": total_price,
             }
 
     def remove(self, product_id):
@@ -82,7 +89,19 @@ class Cart:
         self.save()
 
     def get_total_price(self):
-        return sum(int(item['price']) * item['quantity'] for item in self.cart.values())
+        """
+        get all products price
+        """
+        return sum(int(item["price"]) * item["quantity"] for item in self.cart.values())
+
+    def get_price(self, product):
+        """
+        calculate price with discount
+        """
+        if product.discount():
+            return product.discount()
+        else:
+            return product.price
 
     def save(self):
         self.session.modified = True

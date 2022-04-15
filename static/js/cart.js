@@ -22,6 +22,7 @@ var add = $('#add-to-cart')
 var plus_btn = $('.plus')
 var minus_btn = $('.minus')
 var total = $('.total-price')
+var productCount = $('.product-count')
 
 // add to cart
 add.click(function (e) {
@@ -38,7 +39,7 @@ plus_btn.click(function (event) {
     // get product id
     const product_id = productId(element)
     // get price div
-    const price = element.parentElement.parentElement.lastElementChild
+    const price = element.parentElement.parentElement.lastElementChild.children[0]
     add_to_cart('plus', quantity_div, product_id, price)
 })
 
@@ -51,7 +52,7 @@ minus_btn.click(function (event) {
     // get product id
     const product_id = productId(element)
     // get price div
-    const price = element.parentElement.parentElement.lastElementChild
+    const price = element.parentElement.parentElement.lastElementChild.children[0]
     add_to_cart('minus', quantity_div, product_id, price)
 })
 
@@ -85,12 +86,14 @@ function add_to_cart(act, quantity_div, product_id, price) {
             } else {
                 // increase or decrease product
                 quantity_div.textContent = response.quantity
-                price.textContent = `$${response.price}`
-                total.text(`$ ${response.total_price}`)
+                price.textContent = priceFilter(String(response.price))
+                total.text(priceFilter(String(response.total_price)))
+                productCount.text(response.count)
                 if (response.remove) {
                     quantity_div.textContent = "deleted"
                     price.textContent = `$0`
-                    total.text(`$${response.total_price}`)
+                    total.text(priceFilter(String(response.total_price)))
+                    productCount.text('0')
                 }
             }
 
@@ -113,4 +116,25 @@ var cartBtn = $('.cart-count')
 function cartBtnCount(i) {
     var count = parseInt(cartBtn[0].textContent) + i
     cartBtn[0].textContent = count
+}
+
+
+// price filter
+function priceFilter(p) {
+    console.log(p)
+    var price = p.split('')
+    var numbers = price.filter(function (value, index, arr) {
+        return value !== "" && value !== '$';
+    });
+    var new_price = ''
+    var n = 0
+    for (var i = numbers.length - 1; i >= 0; i--) {
+        n++
+        if (n % 3 == 0 && n < numbers.length) {
+            new_price += `${numbers[i]}'`
+        } else {
+            new_price += numbers[i]
+        }
+    }
+    return `$${new_price.split("").reverse().join("")}`
 }

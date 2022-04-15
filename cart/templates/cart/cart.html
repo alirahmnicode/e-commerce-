@@ -14,12 +14,12 @@
         <div class="price">
             <div>
                 <div>
-                    <div>Products price:</div>
-                    <div>{{ cart.get_total_price | price}}</div>
+                    <div>Number of products:</div>
+                    <div class="product-count">{{request.session.cart | counter}}</div>
                 </div>
                 <div>
                     <div>Price payable:</div>
-                    <div>{{ cart.get_total_price | price}}</div>
+                    <div class="total-price">{{ cart.get_total_price | price}}</div>
                 </div>
             </div>
             <div>
@@ -59,6 +59,9 @@
                         </form>
                         <div>
                             <span>{{ item.total_price | price}}</span>
+                            {% if product.discount%}
+                            <p>Price with {{product.discount_peresen}}% discount</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
