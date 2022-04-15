@@ -17,7 +17,7 @@ def price(p):
     for i in reversed(price):
         n+=1
         if n % 3 == 0 and n < len(price):
-            new_price += f"{i} "
+            new_price += f"{i}'"
         else:
             new_price += i
     return f"${new_price[::-1]}"
