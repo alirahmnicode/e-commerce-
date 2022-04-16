@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'cart.css' %}?{% now 'U' %}">
 <title>payment</title>
@@ -7,6 +8,29 @@
 {% block content %}
 {% include 'inc/nav.html' %}
 
+<div class="container">
+    <div class="order">
+        <div class="detail">
+            {% for item in cart %}
+            {% with product=item.product %}
+            <div class="product">
+                <div><span>{{ product.name }}</span></div>
+                <div>{{ item.quantity }}</div>
+                <div>{{ item.total_price | price}}</div>
+            </div>
+            {% endwith %}
+            {% endfor %}
+        </div>
+        <div class="payment">
+            <div>
+                <p>payable price is: <span>{{ cart.get_total_price | price}}</span></p>
+            </div>
+            <div>
+                <a href="{% url 'order:payment' %}" class="checkout">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
 

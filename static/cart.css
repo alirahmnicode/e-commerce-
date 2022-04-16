@@ -100,6 +100,15 @@
   margin: 100px;
 }
 
+
+.payment {
+  margin: 20px;
+}
+
+.payment> div:first-child {
+  padding: 20px 0;
+}
+
 @media only screen and (max-width:800px) {
   .cart {
     flex-direction: column;
