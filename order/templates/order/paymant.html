@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'cart.css' %}?{% now 'U' %}">
+<title>payment</title>
+{% endblock head %}
+{% block content %}
+{% include 'inc/nav.html' %}
+
+
+{% endblock content %}
+
+
+{% block js %}
+
+{% endblock js %}
