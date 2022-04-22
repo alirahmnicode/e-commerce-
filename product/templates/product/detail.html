@@ -99,8 +99,5 @@
 
 {% block js %}
 {{ product.id |json_script:"product_id" }}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/cart.js' %}"></script>
-<script src="{% static 'js/message.js' %}"></script>
-<script src="{% static 'js/app.js' %}"></script>
 {% endblock js %}
