@@ -1,6 +1,6 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render , get_object_or_404
 from django.contrib.auth import login, logout, authenticate
-from django.views.generic import View, CreateView
+from django.views.generic import View
 from django.contrib import messages
 from django.contrib.auth.models import User
 
@@ -88,4 +88,16 @@ def create_profile(request):
             messages.success(request, "your profile is created")
         else:
             messages.error(request, "check informations,your profile is not created")
+        return redirect(request.META.get("HTTP_REFERER"))
+
+
+def edit_profile(request , pk):
+    if request.method == "POST":
+        instance = get_object_or_404(Profile , pk=pk)
+        form = UserProfileForm(request.POST,instance=instance)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "your profile is updated")
+        else:
+            messages.error(request, "check informations,your profile is not updated")
         return redirect(request.META.get("HTTP_REFERER"))

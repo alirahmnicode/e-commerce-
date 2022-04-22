@@ -48,7 +48,7 @@
         edit information
     </div>
     <div class="edit-profile box">
-        <form action="{% url 'user:profile_create' %}" method="post">
+        <form action="{% url 'user:edit_profile' pk=profile.pk%}" method="post">
             {% csrf_token %}
             {{form.as_p}}
             <input type="submit" value="Edit">

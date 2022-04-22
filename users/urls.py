@@ -5,6 +5,7 @@ from .views import (
     UserRegisterView,
     DashboardView,
     create_profile,
+    edit_profile,
 )
 
 
@@ -16,4 +17,5 @@ urlpatterns = [
     path("signup/", UserRegisterView.as_view(), name="signup"),
     path("dashboard/<str:username>/", DashboardView.as_view(), name="dashboard"),
     path("profile/create/", create_profile, name="profile_create"),
+    path("profile/edit/<int:pk>/", edit_profile, name="edit_profile"),
 ]
