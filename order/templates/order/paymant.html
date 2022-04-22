@@ -7,7 +7,11 @@
 {% endblock head %}
 {% block content %}
 {% include 'inc/nav.html' %}
-
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+</ul>
 <div class="container">
     <div class="order">
         <div class="detail">
@@ -26,7 +30,7 @@
                 <p>payable price is: <span>{{ cart.get_total_price | price}}</span></p>
             </div>
             <div>
-                <a href="{% url 'order:payment' %}" class="checkout">Checkout</a>
+                <a href="{% url 'order:order_product' %}" class="checkout">payment</a>
             </div>
         </div>
     </div>
