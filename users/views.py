@@ -1,10 +1,13 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout, authenticate
-from django.views.generic import View
+from django.views.generic import View, CreateView
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-from .forms import UserLoginForm, UserRegisterForm
+from .forms import UserLoginForm, UserRegisterForm, UserProfileForm
+from .models import Profile
+
+from order.models import Order
 
 
 # user login view
@@ -57,3 +60,32 @@ class UserLogoutView(View):
         logout(request)
         messages.success(request, "you are logged out")
         return redirect("/")
+
+
+class DashboardView(View):
+    def get(self, request, **kwargs):
+        try:
+            profile = Profile.objects.get(user=request.user)
+            form = UserProfileForm(instance=profile)
+        except:
+            profile = None
+            form = UserProfileForm
+        orders = Order.objects.filter(user_info=profile)
+        return render(
+            request,
+            "registration/dashboard.html",
+            {"form": form, "profile": profile, "orders": orders},
+        )
+
+
+def create_profile(request):
+    if request.method == "POST":
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request, "your profile is created")
+        else:
+            messages.error(request, "check informations,your profile is not created")
+        return redirect(request.META.get("HTTP_REFERER"))

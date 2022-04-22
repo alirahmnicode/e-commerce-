@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+<title>dashboard</title>
+{% endblock head %}
+
+
+{% block content %}
+<!-- message -->
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+</ul>
+<!-- header -->
+<header>
+    {% include 'inc/nav.html' %}
+</header>
+<!-- content -->
+<div class="container">
+    {% if profile == None %}
+    <div class="create-profile">
+        <form action="{% url 'user:profile_create' %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Create">
+        </form>
+    </div>
+    {% else %}
+    <div class="info">
+        <div><span>name :</span> <span>{{profile.name}}</span></div>
+        <div><span>phone :</span> <span>{{profile.phone_number}}</span></div>
+        <div><span>state :</span> <span>{{profile.state}}</span></div>
+        <div><span>city :</span> <span>{{profile.city}}</span></div>
+        <div><span>Address:</span>
+            <Address>{{profile.address}}</Address>
+        </div>
+    </div>
+    <div class="title-box">
+        edit information
+    </div>
+    <div class="edit-profile">
+        <form action="{% url 'user:profile_create' %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Edit">
+        </form>
+    </div>
+    <div class="title-box">
+        your factors
+    </div>
+    <div class="factors">
+        {% for order in orders  %}
+            <div class="order">
+                {{order.user_info.name}}
+                <div class="products">
+                    {% for product in order.products.all %}
+                        <div class="product">
+                            {{product.name}}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="price">
+                    <span>{{order.price_paid}}</span>
+                </div>
+                <div class="code">
+                    <span>{{order.trackingcode}}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
