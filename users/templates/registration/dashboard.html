@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'dashboard.css' %}?{% now 'U' %}">
 <title>dashboard</title>
 {% endblock head %}
-
 
 {% block content %}
 <!-- message -->
@@ -20,7 +21,10 @@
 <!-- content -->
 <div class="container">
     {% if profile == None %}
-    <div class="create-profile">
+    <div class="title-box">
+        add profile
+    </div>
+    <div class="create-profile box">
         <form action="{% url 'user:profile_create' %}" method="post">
             {% csrf_token %}
             {{form.as_p}}
@@ -28,7 +32,10 @@
         </form>
     </div>
     {% else %}
-    <div class="info">
+    <div class="title-box">
+        your information
+    </div>
+    <div class="info box">
         <div><span>name :</span> <span>{{profile.name}}</span></div>
         <div><span>phone :</span> <span>{{profile.phone_number}}</span></div>
         <div><span>state :</span> <span>{{profile.state}}</span></div>
@@ -40,7 +47,7 @@
     <div class="title-box">
         edit information
     </div>
-    <div class="edit-profile">
+    <div class="edit-profile box">
         <form action="{% url 'user:profile_create' %}" method="post">
             {% csrf_token %}
             {{form.as_p}}
@@ -51,23 +58,26 @@
         your factors
     </div>
     <div class="factors">
-        {% for order in orders  %}
-            <div class="order">
-                {{order.user_info.name}}
-                <div class="products">
-                    {% for product in order.products.all %}
-                        <div class="product">
-                            {{product.name}}
-                        </div>
-                    {% endfor %}
+        {% for order in orders %}
+        <div class="order box">
+            <span>for :</span> <span>{{order.user_info.name}}</span>
+            <div class="products">
+                {% for product in order.products.all %}
+                <div class="product">
+                    <span>name :</span> <a href="{{product.get_absolute_url}}">{{product.name}}</a>
                 </div>
-                <div class="price">
-                    <span>{{order.price_paid}}</span>
-                </div>
-                <div class="code">
-                    <span>{{order.trackingcode}}</span>
-                </div>
+                {% endfor %}
             </div>
+            <div class="price">
+                <span>price paid :</span> <span>{{order.price_paid | price}}</span>
+            </div>
+            <div><span>Address:</span>
+                <Address>{{profile.address}}</Address>
+            </div>
+            <div class="code">
+                <span>tracking code :</span> <span>{{order.trackingcode}}</span>
+            </div>
+        </div>
         {% endfor %}
     </div>
     {% endif %}

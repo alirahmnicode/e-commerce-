@@ -1,0 +1,42 @@
+.factors {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.box {
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 0px 5px 0px #c6c6c6;
+}
+
+.order a {
+    color: royalblue;
+}
+
+form>p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+
+form input {
+    height: 30px;
+    border: 1px solid #27c28c;
+    outline: none;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+form input[type="submit"] {
+    background: royalblue;
+    color: #fff;
+    width: 70px;
+}
+
+.title-box {
+    color: royalblue;
+    margin: 10px;
+    background-color: #fff;
+}
