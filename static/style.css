@@ -140,9 +140,16 @@ button {
   list-style: none;
   padding: 10px;
   border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0px 5px 0px #c6c6c6;
 }
 
 .messages > li {
   padding: 10px;
   border-radius: 5px;
+}
+
+.messages > .error {
+  background-color: #f8d7da;
+  color: #842029;
 }

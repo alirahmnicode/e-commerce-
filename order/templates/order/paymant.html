@@ -3,15 +3,14 @@
 {% load custom_tags %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'cart.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
 <title>payment</title>
 {% endblock head %}
 {% block content %}
-{% include 'inc/nav.html' %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-        {% endfor %}
-</ul>
+<!-- nav -->
+<header>
+    {% include 'inc/nav.html' %}
+</header>
 <div class="container">
     <div class="order">
         <div class="detail">
