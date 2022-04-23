@@ -78,7 +78,7 @@ function add_to_cart(act, quantity_div, product_id, price) {
                     <p>${response.quantity} ${product_name} added to your cart</p>
                     <p>total prise : $${response.total_price}</p>
                     <p><a href="/cart/">see cart</a></p>
-                    <p><a href="">check out</a></p>
+                    <p><a href="/order/payment/">check out</a></p>
                 </div>
                 `
                 message.append(text)
