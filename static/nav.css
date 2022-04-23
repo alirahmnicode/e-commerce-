@@ -22,7 +22,10 @@ nav a:hover {
   color: black;
 }
 
-.logo>a {
+nav > div:first-child > a{
+  margin-right: 10px;
+}
+.logo {
   font-size: 30px;
 }
 
