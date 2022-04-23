@@ -136,20 +136,21 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  margin: 10px;
   list-style: none;
   padding: 10px;
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 0px 5px 0px #c6c6c6;
+  width: 100%;
+  z-index: 1;
 }
 
-.messages > li {
+.messages>li {
   padding: 10px;
   border-radius: 5px;
 }
 
-.messages > .error {
+.messages>.error {
   background-color: #f8d7da;
   color: #842029;
 }

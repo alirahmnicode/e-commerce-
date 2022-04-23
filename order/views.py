@@ -7,6 +7,7 @@ from .trackingcode import tracking_code
 from cart.cart import Cart
 from users.models import Profile
 from product.models import Product
+from product.inby import increase_buyer
 
 
 class PaymentView(View):
@@ -21,21 +22,26 @@ class OrderProductsView(View):
             try:
                 profile = Profile.objects.get(user=request.user)
                 cart = Cart(request)
-                # create order instance
-                order = Order()
-                # set values
-                order.price_paid = cart.get_total_price()
-                order.user_info = profile
-                order.trackingcode = tracking_code()
-                order.payment = True
-                order.save()
-                # set products
-                for product_id in cart.cart:
-                    product = Product.objects.get(pk=product_id)
-                    order.products.add(product.pk)
-                cart.clear()
-                messages.success(request, "Your purchase has been successfully registered , you can see factors in dashboard")
-                return redirect(request.META.get("HTTP_REFERER"))
+                if len(cart) > 0:
+                    # create order instance
+                    order = Order()
+                    # set values
+                    order.price_paid = cart.get_total_price()
+                    order.user_info = profile
+                    order.trackingcode = tracking_code()
+                    order.payment = True
+                    order.save()
+                    # set products
+                    for product_id in cart.cart:
+                        product = Product.objects.get(pk=product_id)
+                        order.products.add(product.pk)
+                    cart.clear()
+                    increase_buyer(order)
+                    messages.success(request, "Your purchase has been successfully registered , you can see factors in dashboard")
+                    return redirect(request.META.get("HTTP_REFERER"))
+                else:
+                    messages.error(request, "Your purchase has been not registered.")
+                    return redirect(request.META.get("HTTP_REFERER"))
             except:
                 messages.error(request, "Your purchase has been not registered.if you have not profile , create in dashboard")
                 return redirect(request.META.get("HTTP_REFERER"))

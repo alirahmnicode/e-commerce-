@@ -9,15 +9,21 @@ from cart.views import is_ajax
 
 
 def index(request):
-    last_product = Product.objects.all().order_by('-create')[:10]
+    last_product = Product.objects.all().order_by("-create")[:10]
     product_categories = get_list_or_404(CategoryForProduct)[:10]
     recommends = Product.objects.filter(recommend=True)[:10]
     bestsellers = Product.objects.all().order_by("-sales_count")[:10]
     return render(
         request,
         "index.html",
-        {"last_product": last_product, "product_categories": product_categories ,'recommends':recommends,'bestsellers':bestsellers },
+        {
+            "last_product": last_product,
+            "product_categories": product_categories,
+            "recommends": recommends,
+            "bestsellers": bestsellers,
+        },
     )
+
 
 def product_detail(request, pk, slug):
     product = get_object_or_404(Product, pk=pk, slug=slug)
@@ -38,24 +44,28 @@ def get_products_by_category(request, category):
     )
 
 
-def product_list(request , category):
-    if request.method == 'GET':
-        next_products = request.GET.get('n')
-        sort = request.GET.get('sort_by')
-        order = request.GET.get('order')
-        filter = request.GET.get('filter')
-        product_list = ProductList(category , sort , order , filter)
+def product_list(request, category):
+    if request.method == "GET":
+        next_products = request.GET.get("n")
+        sort = request.GET.get("sort_by")
+        order = request.GET.get("order")
+        filter = request.GET.get("filter")
+        product_list = ProductList(category, sort, order, filter)
         if not next_products:
             products = product_list.get_product()
-            return render(request , "product/products_list.html",{"products": products,'category':category})
+            return render(
+                request,
+                "product/products_list.html",
+                {"products": products, "category": category},
+            )
         else:
             products = product_list.get_product(next_products)
             # create dict for response
-            return JsonResponse(products,safe=False)
+            return JsonResponse(products, safe=False)
 
 
 def search(request):
     if is_ajax(request):
-        query = request.GET.get('q')
+        query = request.GET.get("q")
         search_result = search_obj(query)
-        return JsonResponse(search_result,safe=False)
+        return JsonResponse(search_result, safe=False)
