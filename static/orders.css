@@ -1,0 +1,42 @@
+.orders>div:nth-child(odd) {
+    background-color: #e0e0e0;
+}
+
+.order {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0px 5px 0px #c6c6c6;
+}
+
+.order>div {
+    margin: 10px 30px;
+}
+
+.order>div>div {
+    margin: 10px 0;
+}
+
+.order a {
+    color: royalblue;
+}
+
+.order .opt {
+    width: 70px;
+}
+
+.container {
+    display: flex;
+}
+
+.filters {
+    margin-top: 10px;
+}
+
+.filters a {
+    display: block;
+}

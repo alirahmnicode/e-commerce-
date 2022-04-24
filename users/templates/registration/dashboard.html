@@ -71,6 +71,22 @@
             <div class="code">
                 <span>tracking code :</span> <span>{{order.trackingcode}}</span>
             </div>
+            <div class="tags">
+                <div class="verify">
+                    {% if order.status %}
+                    <p class="opt alert status">Confirme</p>
+                    {% else %}
+                    <p class="opt alert status">Reject</p>
+                    {% endif %}
+                </div>
+                <div class="send">
+                    {% if order.send %}
+                    <p class="opt alert post">Posted</p>
+                    {% else %}
+                    <p class="opt alert post">Not posted yet</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
