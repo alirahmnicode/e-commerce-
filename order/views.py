@@ -1,6 +1,8 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.http import JsonResponse
 from django.views import View
 from django.contrib import messages
+from django.core.paginator import Paginator
 from .models import Order
 from .trackingcode import tracking_code
 
@@ -37,14 +39,53 @@ class OrderProductsView(View):
                         order.products.add(product.pk)
                     cart.clear()
                     increase_buyer(order)
-                    messages.success(request, "Your purchase has been successfully registered , you can see factors in dashboard")
+                    messages.success(
+                        request,
+                        "Your purchase has been successfully registered , you can see factors in dashboard",
+                    )
                     return redirect(request.META.get("HTTP_REFERER"))
                 else:
                     messages.error(request, "Your purchase has been not registered.")
                     return redirect(request.META.get("HTTP_REFERER"))
             except:
-                messages.error(request, "Your purchase has been not registered.if you have not profile , create in dashboard")
+                messages.error(
+                    request,
+                    "Your purchase has been not registered.if you have not profile , create in dashboard",
+                )
                 return redirect(request.META.get("HTTP_REFERER"))
         else:
             messages.error(request, "Your are not logged in")
             return redirect(request.META.get("HTTP_REFERER"))
+
+
+class OrdersView(View):
+    def get(self, request):
+        orders = Order.objects.filter(payment=True)
+        paginator = Paginator(orders, 10)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        return render(request, "order/orders.html", {"page_obj": page_obj})
+
+
+class VerifyOrderView(View):
+    def post(self, request):
+        type_value = request.GET.get("type")
+        obj_id = request.GET.get("id")
+        order = get_object_or_404(Order, pk=obj_id)
+        data = None
+        if type_value == "status":
+            if order.status:
+                order.status = False
+            else:
+                order.status = True
+        else:
+            if order.send:
+                order.send = False
+            else:
+                order.send = True
+        order.save()
+        data = {
+            'status':order.status,
+            'send':order.send
+        }
+        return JsonResponse(data)
