@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Order
 from .trackingcode import tracking_code
+from .ordering import Ordering
+from .filters import OrderFilter
 
 from cart.cart import Cart
 from users.models import Profile
@@ -60,32 +62,44 @@ class OrderProductsView(View):
 
 class OrdersView(View):
     def get(self, request):
+        # objects
         orders = Order.objects.filter(payment=True)
-        paginator = Paginator(orders, 10)
+        f = OrderFilter(request.GET , queryset=orders)
+        paginator = Paginator(f.qs, 2)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        return render(request, "order/orders.html", {"page_obj": page_obj})
+        return render(request, "order/orders.html", {"filter": page_obj , 'form':f})
 
 
 class VerifyOrderView(View):
     def post(self, request):
         type_value = request.GET.get("type")
         obj_id = request.GET.get("id")
+        print(obj_id)
+        print('10'*100)
         order = get_object_or_404(Order, pk=obj_id)
         data = None
         if type_value == "status":
-            if order.status:
-                order.status = False
+            if order.confirm:
+                order.confirm = False
             else:
-                order.status = True
+                order.confirm = True
         else:
-            if order.send:
-                order.send = False
+            if order.post:
+                order.post = False
             else:
-                order.send = True
+                order.post = True
         order.save()
         data = {
-            'status':order.status,
-            'send':order.send
+            'status':order.confirm,
+            'send':order.post
         }
         return JsonResponse(data)
+
+
+
+def order_list(request):
+    orders = Order.objects.all()
+    f = OrderFilter(request.GET , queryset=orders)
+    return render(request, 'order/test.html', {'filter': f})
+

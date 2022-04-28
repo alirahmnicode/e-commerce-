@@ -13,8 +13,8 @@ class Order(models.Model):
     payment = models.BooleanField(default=False)
     price_paid = models.IntegerField(default=0)
     trackingcode = models.BigIntegerField()
-    status = models.BooleanField(default=False)
-    send = models.BooleanField(default=False)
+    confirm = models.BooleanField(default=False)
+    post = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user_info.name
+        return f'{self.price_paid}'

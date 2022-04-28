@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party apps
     "ckeditor",
+    'django_filters',
     # local apps
     "product.apps.ProductConfig",
     "cart.apps.CartConfig",

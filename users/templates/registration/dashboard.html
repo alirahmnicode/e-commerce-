@@ -73,14 +73,14 @@
             </div>
             <div class="tags">
                 <div class="verify">
-                    {% if order.status %}
-                    <p class="opt alert status">Confirme</p>
+                    {% if order.confirm %}
+                    <p class="opt alert status">Confirmed</p>
                     {% else %}
-                    <p class="opt alert status">Reject</p>
+                    <p class="opt alert status">Not yet confirmed</p>
                     {% endif %}
                 </div>
                 <div class="send">
-                    {% if order.send %}
+                    {% if order.post %}
                     <p class="opt alert post">Posted</p>
                     {% else %}
                     <p class="opt alert post">Not posted yet</p>
