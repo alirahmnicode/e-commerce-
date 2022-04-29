@@ -1,3 +1,8 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .orders>div:nth-child(odd) {
     background-color: #e0e0e0;
 }
@@ -29,9 +34,6 @@
     width: 70px;
 }
 
-.container {
-    display: flex;
-}
 
 .filters {
     margin-top: 10px;
@@ -39,4 +41,18 @@
 
 .filters a {
     display: block;
+}
+
+.alert {
+    margin: 10px 0;
+}
+
+.filters form p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.pagination {
+    padding: 10px;
 }
