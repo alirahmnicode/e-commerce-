@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render , get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.views.generic import View
 from django.contrib import messages
@@ -47,7 +47,7 @@ class UserRegisterView(View):
         if form.is_valid():
             cd = form.cleaned_data
             user = User.objects.create_user(
-                username=cd["username"], email=cd["email"], password=cd["password1"]
+                username=cd["username"], password=cd["password1"]
             )
             login(request, user)
             messages.success(request, "your account is created and you are logged in")
@@ -91,10 +91,10 @@ def create_profile(request):
         return redirect(request.META.get("HTTP_REFERER"))
 
 
-def edit_profile(request , pk):
+def edit_profile(request, pk):
     if request.method == "POST":
-        instance = get_object_or_404(Profile , pk=pk)
-        form = UserProfileForm(request.POST,instance=instance)
+        instance = get_object_or_404(Profile, pk=pk)
+        form = UserProfileForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
             messages.success(request, "your profile is updated")
