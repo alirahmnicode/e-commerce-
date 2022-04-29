@@ -1,38 +1,39 @@
 {% load custom_tags %}
 <nav>
-    <div>
-        <a class="logo" href="/" class="">home</a>
+    <div class="topnav" id="myTopnav">
+        <a class="items" href="/" class="">home</a>
         {% if request.user.is_authenticated %}
-        <a href="{% url 'user:logout' %}">log out</a>
+        <a class="items" href="{% url 'user:logout' %}">log out</a>
         {% if request.user.is_superuser %}
-        <a href="{% url 'order:order_list' %}">orders</a>
+        <a class="items" href="{% url 'order:order_list' %}">orders</a>
         {% endif %}
-        <a href="{% url 'user:dashboard' request.user.username %}">dashboard</a>
+        <a class="items" href="{% url 'user:dashboard' request.user.username %}">dashboard</a>
         {% else %}
-        <a href="{% url 'user:login' %}">log in</a>
+        <a class="items" href="{% url 'user:login' %}">log in</a>
         {% endif %}
-    </div>
-    <div>
-        <div class="search">
-            <input type="search" name="query" id="search" placeholder="search..." />
-        </div>
-        <div class="cart-box">
-
-            <div class="cart-logo">
-
-                <a href="{% url 'cart:index' %}" class="cart-btn">
-                    <div>
-                        <img
-                            src="https://img.icons8.com/external-obivous-color-kerismaker/48/000000/external-cart-ecommerce-color-obivous-color-kerismaker.png" />
-                    </div>
-                    {% if request.session.cart|length > 0 %}
-                    <span class="cart-count">{{request.session.cart | counter}}</span>
-                    {% else %}
-                    <span class="cart-count">0</span>
-                    {% endif %}
-                </a>
+        <div class="search-box">
+            <div class="search">
+                <input type="search" name="query" id="search" placeholder="search..." />
+            </div>
+            <div class="cart-box">
+                <div class="cart-logo">
+                    <a href="{% url 'cart:index' %}" class="cart-btn">
+                        <div>
+                            <img
+                                src="https://img.icons8.com/external-obivous-color-kerismaker/48/000000/external-cart-ecommerce-color-obivous-color-kerismaker.png" />
+                        </div>
+                        {% if request.session.cart|length > 0 %}
+                        <span class="cart-count">{{request.session.cart | counter}}</span>
+                        {% else %}
+                        <span class="cart-count">0</span>
+                        {% endif %}
+                    </a>
+                </div>
             </div>
         </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
 </nav>
 <div class="close-popup">&times;</div>
