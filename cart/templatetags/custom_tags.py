@@ -27,9 +27,6 @@ def price(p):
 def get_url(url , page_number):
     url_pieces = url.split('page')
     url_pieces2 = url.split('&')
-    print(url)
-    print(url_pieces2)
-    print(url_pieces[0])
     new_url = ''
     if '?' in url:
         if len(url_pieces2) > 1 and url_pieces[0][-1] != '&': 
