@@ -1,11 +1,10 @@
 from django.db import models
 from django.urls import reverse
-from ckeditor.fields import RichTextField
 
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    description = RichTextField()
+    description = models.TextField()
     image = models.ImageField(upload_to="product")
     options = models.ManyToManyField("Option", related_name="options", blank=True)
     category = models.ManyToManyField("CategoryForProduct", related_name="categores", blank=True)
