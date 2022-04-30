@@ -79,7 +79,7 @@ class OrdersView(View):
         else:
             obj = OrderFilter(request.GET , queryset=orders).qs
         form = OrderFilter(request.GET , queryset=orders).form
-        paginator = Paginator(obj, 2)
+        paginator = Paginator(obj, 5)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         return render(request, "order/orders.html", {"filter": page_obj , 'form':form})
