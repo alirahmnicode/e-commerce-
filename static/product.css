@@ -57,3 +57,25 @@
   border-radius: 50%;
   object-fit: contain;
 }
+
+@media only screen and (max-width: 800px) {
+  .boxes > a > div {
+    width: 150px;
+    height: 250px;
+  }
+  .product img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .boxes > a > div {
+    width: 100px;
+    height: 170px;
+  }
+  .product img {
+    width: 100px;
+    height: 100px;
+  }
+}
