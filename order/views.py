@@ -62,21 +62,33 @@ class OrderProductsView(View):
 
 class OrdersView(View):
     def get(self, request):
+        # quereis
+        order = request.GET.get("order")
+        filter = request.GET.get("confirm")
         # objects
         orders = Order.objects.filter(payment=True)
-        f = OrderFilter(request.GET , queryset=orders)
-        paginator = Paginator(f.qs, 5)
+        if order == 'true' and filter is None:
+            o = Ordering(request.GET , queryset=orders)
+            obj = o.order_obj()
+        elif order != 'true' and filter:
+            obj = OrderFilter(request.GET , queryset=orders).qs
+        elif order == 'true' and filter:
+            f = OrderFilter(request.GET , queryset=orders).qs
+            o = Ordering(request.GET , queryset=f)
+            obj = o.order_obj()
+        else:
+            obj = OrderFilter(request.GET , queryset=orders).qs
+        form = OrderFilter(request.GET , queryset=orders).form
+        paginator = Paginator(obj, 2)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        return render(request, "order/orders.html", {"filter": page_obj , 'form':f})
+        return render(request, "order/orders.html", {"filter": page_obj , 'form':form})
 
 
 class VerifyOrderView(View):
     def post(self, request):
         type_value = request.GET.get("type")
         obj_id = request.GET.get("id")
-        print(obj_id)
-        print('10'*100)
         order = get_object_or_404(Order, pk=obj_id)
         data = None
         if type_value == "status":
@@ -95,11 +107,4 @@ class VerifyOrderView(View):
             'send':order.post
         }
         return JsonResponse(data)
-
-
-
-def order_list(request):
-    orders = Order.objects.all()
-    f = OrderFilter(request.GET , queryset=orders)
-    return render(request, 'order/test.html', {'filter': f})
 

@@ -62,15 +62,31 @@
             <div class="pagination">
                 <span class="step-links">
                     {% if filter.has_previous %}
-                    <a href="{{ request.get_full_path | get_url:1 }}">&laquo; first</a>
-                    <a href="{{ request.get_full_path | get_url:filter.previous_page_number  }}">previous</a>
+                    <a href="{% if '?' in request.get_full_path %}
+                    {{ request.get_full_path }}&page=1
+                    {% else %}
+                    {{ request.get_full_path }}?page=1
+                    {% endif %}">&laquo; first</a>
+                    <a href="{% if '?' in request.get_full_path %}
+                    {{ request.get_full_path }}&page={{filter.previous_page_number}}
+                    {% else %}
+                    {{ request.get_full_path }}?page={{filter.previous_page_number}}
+                    {% endif %}">previous</a>
                     {% endif %}
                     <span class="current">
                         Page {{ filter.number }} of {{ filter.paginator.num_pages }}.
                     </span>
                     {% if filter.has_next %}
-                    <a href="{{ request.get_full_path | get_url:filter.next_page_number }}">next</a>
-                    <a href="{{ request.get_full_path | get_url:filter.paginator.num_pages }}">last
+                    <a href="{% if '?' in request.get_full_path %}
+                    {{ request.get_full_path }}&page={{filter.next_page_number}}
+                    {% else %}
+                    {{ request.get_full_path }}?page={{filter.next_page_number}}
+                    {% endif %}">next</a>
+                    <a href="{% if '?' in request.get_full_path %}
+                    {{ request.get_full_path }}&page={{filter.paginator.num_pages}}
+                    {% else %}
+                    {{ request.get_full_path }}?page={{filter.paginator.num_pages}}
+                    {% endif %}">last
                         &raquo;</a>
                     {% endif %}
                 </span>
@@ -81,10 +97,23 @@
         <div class="title-box">filtering:</div>
         <div class="filter">
             <form method="get">
-                {{ form.form.as_p }}
-                <input type="submit" class="alert" value="submit"/>
+                {{ form.as_p }}
+                <input type="submit" class="alert" value="submit" />
             </form>
         </div>
+        <div class="title-box">ordering:</div>
+        <a href="
+        {% if '?' in request.get_full_path %}
+            {{ request.get_full_path }}&order=true&order_type=create&base=ascending
+        {% else %}
+        {{ request.get_full_path }}?order=true&order_type=create&base=ascending
+        {% endif %}
+            ">Date(ascending):</a>
+        <a href="{% if '?' in request.get_full_path %}
+        {{ request.get_full_path }}&order=true&order_type=create&base=descending
+        {% else %}
+        {{ request.get_full_path }}?order=true&order_type=create&base=descending
+        {% endif %}">Date(descending):</a>
     </div>
 </div>
 {% endblock content %}
