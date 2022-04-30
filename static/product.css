@@ -47,7 +47,7 @@
   border-radius: 50%;
   width: 200px;
   height: 200px;
-  margin: 10px 20px;
+  margin: 20px 20px;
   box-shadow: 0 0 15px 0px #ccc;
 }
 
@@ -67,6 +67,14 @@
     width: 150px;
     height: 150px;
   }
+  .category {
+    width: 150px;
+    height: 150px;
+  }
+  .category img {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -75,6 +83,14 @@
     height: 170px;
   }
   .product img {
+    width: 100px;
+    height: 100px;
+  }
+  .category {
+    width: 100px;
+    height: 100px;
+  }
+  .category img {
     width: 100px;
     height: 100px;
   }
