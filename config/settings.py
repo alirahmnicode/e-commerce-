@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party apps
     'django_filters',
+    'rest_framework',
     # local apps
     "product.apps.ProductConfig",
     "cart.apps.CartConfig",
