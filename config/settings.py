@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # third party apps
-    'django_filters',
-    'rest_framework',
+    "rest_framework",
+    "djoser",
+    "django_filters",
     # local apps
     "product.apps.ProductConfig",
     "cart.apps.CartConfig",
@@ -139,5 +140,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 REST_FRAMEWORK = {
-    'COERCE_DECIMAL_TO_STRING':False
+    "COERCE_DECIMAL_TO_STRING": False,
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("JWT",),
+}
+
+
+DJOSER = {
+    'SERIALIZERS': {
+        'current_user': 'users.serializers.UserSerializer',
+    },
 }

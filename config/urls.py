@@ -10,6 +10,8 @@ urlpatterns = [
     path("order/", include("order.urls")),
     path("user/", include("users.urls")),
     path("api/", include("api.urls")),
+    path("auth/", include("djoser.urls")),
+    path('auth/',include('djoser.urls.jwt')),
 ]
 
 
