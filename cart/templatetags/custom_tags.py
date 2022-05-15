@@ -7,6 +7,7 @@ register = template.Library()
 def counter(value):
     count = 0
     for i in value.values():
+        print(type(i["quantity"]))
         count += i["quantity"]
     return count
 

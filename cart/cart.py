@@ -26,8 +26,8 @@ class Cart:
         for product in products:
             cart[str(product.id)]["product"] = product
         for item in cart.values():
-            item["price"] = Decimal(item["price"])
-            item["total_price"] = item["price"] * item["quantity"]
+            item["unit_price"] = Decimal(item["price"])
+            item["total_price"] = Decimal(item["price"]) * item["quantity"]
             yield item
 
     def __len__(self):
@@ -54,25 +54,6 @@ class Cart:
             if self.cart[product_id]["quantity"] == 0:
                 self.removed_product = self.remove(int(product_id))
         self.save()
-        if not self.removed_product and product_id in self.cart:
-            price = self.cart[product_id]["quantity"] * int(
-                self.cart[product_id]["price"]
-            )
-            total_price = self.get_total_price()
-            quantity = self.cart[product_id]["quantity"]
-            return {
-                "quantity": quantity,
-                "price": price,
-                "total_price": total_price,
-                "count":counter(self.session['cart']),
-                "remove": False,
-            }
-        else:
-            total_price = self.get_total_price()
-            return {
-                "remove": True,
-                "total_price": total_price,
-            }
 
     def remove(self, product_id):
         """

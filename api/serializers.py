@@ -23,3 +23,9 @@ class ProductSerializer(serializers.ModelSerializer):
             "create",
             "update",
         )
+
+
+class CartAddSerializer(serializers.Serializer):
+    product_id = serializers.IntegerField()
+    quanity = serializers.IntegerField()
+
